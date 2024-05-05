@@ -39,7 +39,7 @@ public class LocationCoord {
 
             while (!WeatherAPI.getStatus()) ;
             iconString = WeatherAPI.getIconString();
-            Log.d("User",iconString);
+            Log.d("USER",iconString);
         }).start();
     }
     @SuppressLint("MissingPermission")
