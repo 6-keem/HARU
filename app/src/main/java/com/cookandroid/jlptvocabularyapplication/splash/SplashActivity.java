@@ -46,22 +46,23 @@ public class SplashActivity extends Activity {
             new InsertIntoTable(getApplicationContext()).insert();
         }).start();
 
-//        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED))
-//            delay = 5000;
-//
-//
-//        new Handler().postDelayed(() ->{
-//            getPermission();
-//            LocationCoord.getInstance(fusedLocationProviderClient).getWeather();
-//            new Handler().postDelayed(()-> {
-//                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
-//                startActivity(intent);
-//                finish();
-//            }, 5000 - (delay/2));
-//        },delay);
+        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED))
+            delay = 3000;
+
+
+        new Handler().postDelayed(() ->{
+            getPermission();
+            LocationCoord.getInstance(fusedLocationProviderClient).getWeather();
+            new Handler().postDelayed(()-> {
+                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
+                startActivity(intent);
+                finish();
+            }, 3000 - (delay/2));
+        },delay);
     }
     private void getPermission(){
+        // 로그인 화면 추가하여 무한루프 -> 앱 멈춤 제거
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 100);

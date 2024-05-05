@@ -1,12 +1,20 @@
 package com.cookandroid.jlptvocabularyapplication.database.insertintotable;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
 
 import com.cookandroid.jlptvocabularyapplication.database.Word;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
+import com.cookandroid.jlptvocabularyapplication.database.exportdatabase.DatabaseExporter;
 import com.cookandroid.jlptvocabularyapplication.database.openjson.OpenJson;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 // INSERT INTO TABLE -> when the database file is exist into the asset folers
@@ -20,13 +28,16 @@ public class InsertIntoTable {
             int finalI = i;
             Log.d("USER",i + " - START");
             new Thread(() -> {
-                whenTheFileExist(finalI);
+                boolean flag = DatabaseChecker.isDatabaseExists(context,"n"+(finalI+1) +".db");
+                if(flag)
+                    whenTheFileExist(finalI);
+                else
+                    whenTheFileNotExist(finalI);
             }).start();
             Log.d("USER",i + " - END");
         }
     }
 
-    // 애뮬레이터에 있느면 WordsDatabase 폴더에서 메서드 수정
     private void whenTheFileExist(int level){
         WordsDatabase wordsDatabase = WordsDatabase.getInstance(context, level, true);
         wordsDatabase.beginTransaction();
@@ -35,10 +46,19 @@ public class InsertIntoTable {
 
     // clearAllTables 설정 해야함
     private void whenTheFileNotExist(int level){
-        List<Word> words = new OpenJson(context.getAssets(),level).getWordsList();
-        WordsDatabase wordsDatabase = WordsDatabase.getInstance(context, level, true);
-        wordsDatabase.clearAllTables();
-        for(Word word : words)
-            wordsDatabase.wordDao().insertWord(word);
+        boolean isAssetExist = AssetChecker.isAssetExists(context.getAssets(), "n" + (level+1) + ".db");
+        WordsDatabase wordsDatabase = null;
+        if(isAssetExist){
+            wordsDatabase = WordsDatabase.getInstance(context, level, false);
+            wordsDatabase.beginTransaction();
+            wordsDatabase.endTransaction();
+        }
+        else {
+            List<Word> words = new OpenJson(context.getAssets(),level).getWordsList();
+            wordsDatabase = WordsDatabase.getInstance(context, level, true);
+            wordsDatabase.clearAllTables();
+            for(Word word : words)
+                wordsDatabase.wordDao().insertWord(word);
+        }
     }
 }
