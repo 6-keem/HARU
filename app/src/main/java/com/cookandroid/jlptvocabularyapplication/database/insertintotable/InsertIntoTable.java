@@ -1,20 +1,12 @@
 package com.cookandroid.jlptvocabularyapplication.database.insertintotable;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
-
-import androidx.core.app.ActivityCompat;
 
 import com.cookandroid.jlptvocabularyapplication.database.Word;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
-import com.cookandroid.jlptvocabularyapplication.database.exportdatabase.DatabaseExporter;
 import com.cookandroid.jlptvocabularyapplication.database.openjson.OpenJson;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 // INSERT INTO TABLE -> when the database file is exist into the asset folers
@@ -39,7 +31,7 @@ public class InsertIntoTable {
     }
 
     private void whenTheFileExist(int level){
-        WordsDatabase wordsDatabase = WordsDatabase.getInstance(context, level, true);
+        WordsDatabase wordsDatabase = WordsDatabase.createInstance(context, level, true);
         wordsDatabase.beginTransaction();
         wordsDatabase.endTransaction();
     }
@@ -49,13 +41,13 @@ public class InsertIntoTable {
         boolean isAssetExist = AssetChecker.isAssetExists(context.getAssets(), "n" + (level+1) + ".db");
         WordsDatabase wordsDatabase = null;
         if(isAssetExist){
-            wordsDatabase = WordsDatabase.getInstance(context, level, false);
+            wordsDatabase = WordsDatabase.createInstance(context, level, false);
             wordsDatabase.beginTransaction();
             wordsDatabase.endTransaction();
         }
         else {
             List<Word> words = new OpenJson(context.getAssets(),level).getWordsList();
-            wordsDatabase = WordsDatabase.getInstance(context, level, true);
+            wordsDatabase = WordsDatabase.createInstance(context, level, true);
             wordsDatabase.clearAllTables();
             for(Word word : words)
                 wordsDatabase.wordDao().insertWord(word);
