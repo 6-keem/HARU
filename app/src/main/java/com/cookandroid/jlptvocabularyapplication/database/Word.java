@@ -37,8 +37,19 @@ public class Word implements Serializable {
     @TypeConverters(SentenceConverter.class)
     @SerializedName("sentences") public List<Sentence> sentences;
 
+    @ColumnInfo(name = "book_marked" , defaultValue = "false")
+    @SerializedName("book_marked") public boolean bookMarked;
+
     public long getWordId() {
         return wordId;
+    }
+
+    public boolean isBookMarked() {
+        return bookMarked;
+    }
+
+    public void setBookMarked(boolean bookMarked) {
+        this.bookMarked = bookMarked;
     }
 
     public void setWordId(long wordId) {
