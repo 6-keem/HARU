@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database;
+package com.cookandroid.jlptvocabularyapplication.database.converters;
 
 import androidx.room.TypeConverter;
 

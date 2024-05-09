@@ -1,10 +1,12 @@
-package com.cookandroid.jlptvocabularyapplication.database;
+package com.cookandroid.jlptvocabularyapplication.database.tableclass;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.cookandroid.jlptvocabularyapplication.database.converters.SentenceConverter;
+import com.cookandroid.jlptvocabularyapplication.database.converters.WordMeaningConverter;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -37,19 +39,19 @@ public class Word implements Serializable {
     @TypeConverters(SentenceConverter.class)
     @SerializedName("sentences") public List<Sentence> sentences;
 
-    @ColumnInfo(name = "book_marked" , defaultValue = "false")
-    @SerializedName("book_marked") public boolean bookMarked;
+    @ColumnInfo(name = "level")
+    @SerializedName("level")     public int level;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public long getWordId() {
         return wordId;
-    }
-
-    public boolean isBookMarked() {
-        return bookMarked;
-    }
-
-    public void setBookMarked(boolean bookMarked) {
-        this.bookMarked = bookMarked;
     }
 
     public void setWordId(long wordId) {

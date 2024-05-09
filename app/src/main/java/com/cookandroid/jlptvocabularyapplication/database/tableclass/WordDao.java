@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database;
+package com.cookandroid.jlptvocabularyapplication.database.tableclass;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

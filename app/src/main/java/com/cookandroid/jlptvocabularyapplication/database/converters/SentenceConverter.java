@@ -1,7 +1,8 @@
-package com.cookandroid.jlptvocabularyapplication.database;
+package com.cookandroid.jlptvocabularyapplication.database.converters;
 
 import androidx.room.TypeConverter;
 
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.Sentence;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

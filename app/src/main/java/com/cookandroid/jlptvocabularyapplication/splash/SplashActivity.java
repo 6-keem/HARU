@@ -2,7 +2,6 @@ package com.cookandroid.jlptvocabularyapplication.splash;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -14,23 +13,11 @@ import androidx.core.splashscreen.SplashScreen;
 
 import com.cookandroid.jlptvocabularyapplication.MainActivity;
 import com.cookandroid.jlptvocabularyapplication.R;
-import com.cookandroid.jlptvocabularyapplication.database.Word;
-import com.cookandroid.jlptvocabularyapplication.database.WordDeserializer;
-import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
-import com.cookandroid.jlptvocabularyapplication.database.insertintotable.InsertIntoTable;
-import com.cookandroid.jlptvocabularyapplication.database.openjson.OpenJson;
+import com.cookandroid.jlptvocabularyapplication.database.importdatabase.InsertIntoDB;
+import com.cookandroid.jlptvocabularyapplication.database.importdatabase.InsertTableHandler;
 import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.List;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends Activity {
@@ -43,23 +30,25 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.splash);
 
         new Thread(() ->{
-            new InsertIntoTable(getApplicationContext()).insert();
+            Log.d("status","start");
+            new InsertTableHandler(getApplicationContext()).insert();
+            Log.d("status","end");
         }).start();
 
-        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED))
-            delay = 3000;
-
-
-        new Handler().postDelayed(() ->{
-            getPermission();
-            LocationCoord.getInstance(fusedLocationProviderClient).getWeather();
-            new Handler().postDelayed(()-> {
-                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
-                startActivity(intent);
-                finish();
-            }, 3000 - (delay/2));
-        },delay);
+//        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED))
+//            delay = 3000;
+//
+//
+//        new Handler().postDelayed(() ->{
+//            getPermission();
+//            LocationCoord.getInstance(fusedLocationProviderClient).getWeather();
+//            new Handler().postDelayed(()-> {
+//                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
+//                startActivity(intent);
+//                finish();
+//            }, 3000 - (delay/2));
+//        },delay);
     }
     private void getPermission(){
         // 로그인 화면 추가하여 무한루프 -> 앱 멈춤 제거

@@ -1,5 +1,7 @@
-package com.cookandroid.jlptvocabularyapplication.database;
+package com.cookandroid.jlptvocabularyapplication.database.converters;
 
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.Sentence;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
@@ -10,14 +12,13 @@ import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 public class WordDeserializer implements JsonDeserializer<Word> {
     @Override
     public Word deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         Word word = new Gson().fromJson(json, Word.class);
         JsonObject jsonObject = json.getAsJsonObject();
-        JsonArray wordArray = (JsonArray) jsonObject.get("wd_meaning");
+        JsonArray wordArray = (JsonArray) jsonObject.get("word_meaning");
         JsonArray sentenceArray = (JsonArray) jsonObject.get("sentences");
 
         word.setWordMeaning(null);
@@ -33,11 +34,10 @@ public class WordDeserializer implements JsonDeserializer<Word> {
             ArrayList<Sentence> arrayList = new ArrayList<>();
             for(int i = 0 ; i < sentenceArray.size() ; i++){
                 JsonObject obj = sentenceArray.get(i).getAsJsonObject();
-                arrayList.add(new Sentence(obj.get("sentence").getAsString(),obj.get("st_meaning").getAsString()));
+                arrayList.add(new Sentence(obj.get("jp").getAsString(),obj.get("kr").getAsString()));
             }
             word.setSentences(arrayList);
         }
-
         return word;
     }
 }

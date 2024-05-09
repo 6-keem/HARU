@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database.insertintotable;
+package com.cookandroid.jlptvocabularyapplication.database.importdatabase;
 
 import android.content.res.AssetManager;
 import java.io.IOException;

@@ -1,5 +1,7 @@
-package com.cookandroid.jlptvocabularyapplication.database;
+package com.cookandroid.jlptvocabularyapplication.database.jsonparser;
 
+import com.cookandroid.jlptvocabularyapplication.database.converters.WordDeserializer;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -6,42 +6,47 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.WordDao;
 
-@Database(entities = {Word.class}, version = 1)
+@Database(entities = {Word.class }, version = 1)
 public abstract class WordsDatabase extends RoomDatabase {
-    private static ConcurrentHashMap<String,WordsDatabase> databaseHashMap = new ConcurrentHashMap<>();
+    private static WordsDatabase wordsDatabase = null;
     public abstract WordDao wordDao();
-    public static WordsDatabase createInstance(Context context, int level, boolean flag){
-        String fileName = "n" + (level + 1);
-        if(databaseHashMap.get(fileName) == null){
-            WordsDatabase db;
-            if(flag)
-                db = Room.databaseBuilder(context.getApplicationContext(),
-                            WordsDatabase.class, (fileName+".db"))
-                    .setJournalMode(JournalMode.TRUNCATE)
-                    .fallbackToDestructiveMigration()
-                    .build();
-            else
-                db = Room.databaseBuilder(context.getApplicationContext(),
-                                WordsDatabase.class, (fileName+".db"))
-                    .createFromAsset(fileName + ".db")
-                    .setJournalMode(JournalMode.TRUNCATE)
-                    .fallbackToDestructiveMigration()
-                    .build();
 
-            databaseHashMap.put(fileName,db);
-            return db;
+    private static WordsDatabase getInstance(Context context){
+            return wordsDatabase = Room.databaseBuilder(context.getApplicationContext(),
+                            WordsDatabase.class, ("jlpt.db"))
+                    .setJournalMode(JournalMode.TRUNCATE)
+                    .fallbackToDestructiveMigration()
+                    .build();
+    }
+
+    public static WordsDatabase getInstanceWhenDBExistsOnSystemFolder(Context context){
+        if(wordsDatabase == null) {
+            getInstance(context);
+            wordsDatabase.beginTransaction();
+            wordsDatabase.endTransaction();
         }
-        return databaseHashMap.get(fileName);
+        return wordsDatabase;
     }
-    public static WordsDatabase getInstance(int level){
-        if(databaseHashMap.get("n"+(level+1)) != null)
-            return databaseHashMap.get("n"+(level+1));
-        return null;
+
+    public static WordsDatabase getInstanceWhenDBFileNotExistsInAssetFolder(Context context){
+        if(wordsDatabase == null) {
+            getInstance(context);
+            wordsDatabase.clearAllTables();
+        }
+        return wordsDatabase;
     }
-    public static void clearAllTables(int level) {
-        Objects.requireNonNull(databaseHashMap.get("n" + level)).clearAllTables();
+    public static WordsDatabase getInstanceWhenDBFileExistsInAssetFolder(Context context){
+        if(wordsDatabase == null) {
+            wordsDatabase = Room.databaseBuilder(context.getApplicationContext(),
+                            WordsDatabase.class, ("jlpt.db"))
+                    .createFromAsset("jlpt.db")
+                    .setJournalMode(JournalMode.TRUNCATE)
+                    .fallbackToDestructiveMigration()
+                    .build();
+        }
+        return wordsDatabase;
     }
 }
