@@ -30,9 +30,7 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.splash);
 
         new Thread(() ->{
-            Log.d("status","start");
             new InsertTableHandler(getApplicationContext()).insert();
-            Log.d("status","end");
         }).start();
 
 //        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED

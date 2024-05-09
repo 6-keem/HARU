@@ -14,21 +14,19 @@ public abstract class WordsDatabase extends RoomDatabase {
     private static WordsDatabase wordsDatabase = null;
     public abstract WordDao wordDao();
 
-    private static WordsDatabase getInstance(Context context){
-            return wordsDatabase = Room.databaseBuilder(context.getApplicationContext(),
+    public static WordsDatabase getInstance(Context context){
+        if(wordsDatabase == null){
+            wordsDatabase = Room.databaseBuilder(context.getApplicationContext(),
                             WordsDatabase.class, ("jlpt.db"))
                     .setJournalMode(JournalMode.TRUNCATE)
                     .fallbackToDestructiveMigration()
                     .build();
+        }
+        return wordsDatabase;
     }
 
     public static WordsDatabase getInstanceWhenDBExistsOnSystemFolder(Context context){
-        if(wordsDatabase == null) {
-            getInstance(context);
-            wordsDatabase.beginTransaction();
-            wordsDatabase.endTransaction();
-        }
-        return wordsDatabase;
+        return getInstance(context);
     }
 
     public static WordsDatabase getInstanceWhenDBFileNotExistsInAssetFolder(Context context){
@@ -38,6 +36,7 @@ public abstract class WordsDatabase extends RoomDatabase {
         }
         return wordsDatabase;
     }
+
     public static WordsDatabase getInstanceWhenDBFileExistsInAssetFolder(Context context){
         if(wordsDatabase == null) {
             wordsDatabase = Room.databaseBuilder(context.getApplicationContext(),
@@ -46,6 +45,8 @@ public abstract class WordsDatabase extends RoomDatabase {
                     .setJournalMode(JournalMode.TRUNCATE)
                     .fallbackToDestructiveMigration()
                     .build();
+            wordsDatabase.beginTransaction();
+            wordsDatabase.endTransaction();
         }
         return wordsDatabase;
     }
