@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/background_color"
-    tools:context=".MainActivity">
+    tools:context=".screens.main.MainActivity">
     <ImageView
         android:src="@drawable/logo"
         android:layout_width="wrap_content"
