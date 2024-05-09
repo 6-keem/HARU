@@ -21,6 +21,8 @@ public abstract class WordsDatabase extends RoomDatabase {
                     .setJournalMode(JournalMode.TRUNCATE)
                     .fallbackToDestructiveMigration()
                     .build();
+            wordsDatabase.beginTransaction();
+            wordsDatabase.endTransaction();
         }
         return wordsDatabase;
     }
