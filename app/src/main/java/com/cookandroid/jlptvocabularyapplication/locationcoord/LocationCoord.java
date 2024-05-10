@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.cookandroid.jlptvocabularyapplication.weather.WeatherAPI;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnTokenCanceledListener;
 
@@ -45,7 +46,7 @@ public class LocationCoord {
     @SuppressLint("MissingPermission")
     private void getLocationCoord() {
         setStatus(false);
-        fusedLocationProviderClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, new CancellationToken() {
+        fusedLocationProviderClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY , new CancellationToken() {
             @NonNull
             @Override
             public CancellationToken onCanceledRequested(@NonNull OnTokenCanceledListener onTokenCanceledListener) {

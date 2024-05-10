@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.WordDao;
 
-@Database(entities = {Word.class }, version = 1)
+@Database(entities = {Word.class }, version = 1, exportSchema = false)
 public abstract class WordsDatabase extends RoomDatabase {
     private static WordsDatabase wordsDatabase = null;
     public abstract WordDao wordDao();
