@@ -35,4 +35,7 @@ public interface WordDao {
 
     @Query("SELECT * FROM word WHERE star_count > 0 and word_id > 0 and word_id < 100")
     List<Word> getWords();
+
+    @Query("SELECT count(*) FROM word WHERE level = :level and star_count > :star_count")
+    int getWordsCount(int level, int star_count);
 }
