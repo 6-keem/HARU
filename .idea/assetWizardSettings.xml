@@ -3,6 +3,11 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
+        <entry key="imageWizard">
+          <value>
+            <PersistentState />
+          </value>
+        </entry>
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -14,8 +19,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="weather_thunder" />
-                            <entry key="sourceFile" value="C:\Users\6ukee\OneDrive\바탕 화면\weather_thunder.svg" />
+                            <entry key="outputName" value="main_test_icon" />
+                            <entry key="sourceFile" value="C:\Users\6ukee\OneDrive\바탕 화면\main_test_icon.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -43,7 +43,7 @@ static class ChapterViewHolder extends RecyclerView.ViewHolder{
 
         public ChapterViewHolder(@NonNull View itemView) {
             super(itemView);
-//            imageView = (ImageView) itemView.findViewById(R.id._chapter_card_img);
+//            imageView = (ImageView) itemView.findViewById(R.id.chapter_card_img);
 //            title = (TextView) itemView.findViewById(R.id.chapter_card_title);
 //            description = (TextView) itemView.findViewById(R.id.chapter_card_description);
 //            progressBar = (ProgressBar) itemView.findViewById(R.id.chatper_card_progressbar);
