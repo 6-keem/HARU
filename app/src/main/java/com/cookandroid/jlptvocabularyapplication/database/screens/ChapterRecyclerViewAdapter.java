@@ -18,6 +18,9 @@ import java.util.ArrayList;
 public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecyclerViewAdapter.ChapterViewHolder> {
 
     private ArrayList<ChapterData> chapterData;
+    private ArrayList<ImageView> imageViews;
+    private ArrayList<TextView> titles, progress;
+    private ArrayList<TextView> description;
     @NonNull
     @Override
     public ChapterRecyclerViewAdapter.ChapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,16 +40,47 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
 
 //     Image, Title, Progressbar
 static class ChapterViewHolder extends RecyclerView.ViewHolder{
-        ImageView imageView;
-        TextView title, description;
-        ProgressBar progressBar;
-
+        ArrayList<ChapterData> chapterData = new ArrayList<>();
+        ArrayList<ImageView> imageViews = new ArrayList<>();
+        ArrayList<TextView> description = new ArrayList<>();
+        ArrayList<TextView> titles = new ArrayList<>();
+        ArrayList<TextView> progress = new ArrayList<>();
         public ChapterViewHolder(@NonNull View itemView) {
             super(itemView);
-//            imageView = (ImageView) itemView.findViewById(R.id.chapter_card_img);
-//            title = (TextView) itemView.findViewById(R.id.chapter_card_title);
-//            description = (TextView) itemView.findViewById(R.id.chapter_card_description);
-//            progressBar = (ProgressBar) itemView.findViewById(R.id.chatper_card_progressbar);
+            imageViews.add((ImageView) itemView.findViewById(R.id.image1));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image2));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image3));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image4));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image5));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image6));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image7));
+            imageViews.add((ImageView) itemView.findViewById(R.id.image8));
+
+            titles.add((TextView) itemView.findViewById(R.id.title1));
+            titles.add((TextView) itemView.findViewById(R.id.title2));
+            titles.add((TextView) itemView.findViewById(R.id.title3));
+            titles.add((TextView) itemView.findViewById(R.id.title4));
+            titles.add((TextView) itemView.findViewById(R.id.title5));
+            titles.add((TextView) itemView.findViewById(R.id.title6));
+            titles.add((TextView) itemView.findViewById(R.id.title7));
+            titles.add((TextView) itemView.findViewById(R.id.title8));
+//
+//            description.add((TextView) itemView.findViewById(R.id.description1));
+//            description.add((TextView) itemView.findViewById(R.id.description2));
+//            description.add((TextView) itemView.findViewById(R.id.description3));
+//            description.add((TextView) itemView.findViewById(R.id.description4));
+//            description.add((TextView) itemView.findViewById(R.id.description5));
+//            description.add((TextView) itemView.findViewById(R.id.description6);
+//            description.add((TextView) itemView.findViewById(R.id.description7));
+
+
+//            progress.add((TextView) itemView.findViewById(R.id.progress1));
+//            progress.add((TextView) itemView.findViewById(R.id.progress2));
+//            progress.add((TextView) itemView.findViewById(R.id.progress3));
+//            progress.add((TextView) itemView.findViewById(R.id.progress4));
+//            progress.add((TextView) itemView.findViewById(R.id.progress5));
+//            progress.add((TextView) itemView.findViewById(R.id.progress6));
+//            progress.add((TextView) itemView.findViewById(R.id.progress7));
         }
     }
 }

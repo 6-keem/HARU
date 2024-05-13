@@ -2,6 +2,7 @@
 <resources>
     <color name="background_color">#FF21212C</color>
     <color name="foreground_color">#FFFFFFFF</color>
+    <color name="foreground_color_gray">#B3B3B3</color>
     <color name="button_color">#FF282A36</color>
     <color name="icon_color">#FFFFFFFF</color>
 </resources>

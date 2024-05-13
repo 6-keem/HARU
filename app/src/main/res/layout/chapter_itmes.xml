@@ -5,13 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+<!--  test  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/image1"
             app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom"
             app:layout_constraintLeft_toRightOf="@id/guideline_icon_start"
             app:layout_constraintRight_toLeftOf="@id/guideline_icon_right"
@@ -24,18 +25,20 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@color/button_color"
-            app:cardCornerRadius="35dp"
-            app:cardElevation="8dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintTop_toTopOf="parent">
             <LinearLayout
+                android:id="@+id/layout1"
                 android:background="@drawable/style_unit_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="JLPT N5"
@@ -45,10 +48,10 @@
             android:textSize="22sp"
             android:elevation="9dp"
             app:layout_constraintLeft_toRightOf="@id/guideline_section_left"
-            app:layout_constraintTop_toTopOf="@id/image"/>
+            app:layout_constraintTop_toTopOf="@id/image1"/>
         <TextView
             android:textColor="@color/foreground_color"
-            android:id="@+id/title2"
+            android:id="@+id/semi_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="단어 시험"
@@ -58,8 +61,9 @@
             android:elevation="9dp"
             android:layout_marginStart="5dp"
             android:paddingBottom="2dp"
-            app:layout_constraintBottom_toBottomOf="@id/title"
-            app:layout_constraintLeft_toRightOf="@id/title"/>
+            app:layout_constraintBottom_toBottomOf="@id/title1"
+            app:layout_constraintLeft_toRightOf="@id/title1"/>
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_icon_right"
@@ -106,7 +110,673 @@
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/guideline1"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 1-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image2"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom2"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start2"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right2"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/layout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/style_unit_2"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left2"
+            app:layout_constraintTop_toTopOf="@id/image2"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 2 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image3"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom3"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start3"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right3"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/layout3"
+                android:background="@drawable/style_unit_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left3"
+            app:layout_constraintTop_toTopOf="@id/image3"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 3 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image4"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom4"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start4"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right4"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/layout4"
+                android:background="@drawable/style_unit_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left4"
+            app:layout_constraintTop_toTopOf="@id/image4"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 4 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image5"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom5"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start5"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right5"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/layout5"
+                android:background="@drawable/style_unit_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left5"
+            app:layout_constraintTop_toTopOf="@id/image5"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="383dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 5 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image6"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom6"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start6"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right6"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/layout6"
+                android:background="@drawable/style_unit_6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left6"
+            app:layout_constraintTop_toTopOf="@id/image6"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 6 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image7"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom7"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start7"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right7"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/layout7"
+                android:background="@drawable/style_unit_7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left7"
+            app:layout_constraintTop_toTopOf="@id/image7"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<!-- unit 7 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent_layout_8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image8"
+            app:layout_constraintBottom_toTopOf="@id/guideline_icon_bottom8"
+            app:layout_constraintLeft_toRightOf="@id/guideline_icon_start8"
+            app:layout_constraintRight_toLeftOf="@id/guideline_icon_right8"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/main_test_icon"
+            android:elevation="9dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/button_color"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/layout8"
+                android:background="@drawable/style_unit_8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNIT 1"
+            android:textColor="@color/foreground_color"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:elevation="9dp"
+            app:layout_constraintLeft_toRightOf="@id/guideline_section_left8"
+            app:layout_constraintTop_toTopOf="@id/image8"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_right8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="90dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_section_left8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_start8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="28dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_icon_bottom8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="93dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="103dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_card_left8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="18dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintGuide_begin="20dp"
             android:orientation="horizontal" />
     </androidx.constraintlayout.widget.ConstraintLayout>

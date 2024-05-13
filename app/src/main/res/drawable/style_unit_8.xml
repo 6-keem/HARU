@@ -9,7 +9,7 @@
     <item android:top="85dp">
         <shape android:shape="rectangle" >
             <size android:height="20dp" />
-            <solid android:color="@color/test_color" />
+            <solid android:color="@color/unit_7_color" />
         </shape>
     </item>
 </layer-list>

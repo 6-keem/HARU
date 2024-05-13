@@ -6,10 +6,10 @@
             <solid android:color="@color/button_color" />
         </shape>
     </item>
-    <item android:top="80dp">
+    <item android:top="85dp">
         <shape android:shape="rectangle" >
             <size android:height="20dp" />
-            <solid android:color="@color/unit_2_color" />
+            <solid android:color="@color/unit_1_color" />
         </shape>
     </item>
 </layer-list>
