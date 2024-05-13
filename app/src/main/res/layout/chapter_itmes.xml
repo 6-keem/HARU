@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image1"
@@ -118,7 +118,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image2"
@@ -214,7 +214,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image3"
@@ -309,7 +309,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image4"
@@ -404,7 +404,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image5"
@@ -499,7 +499,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_6"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image6"
@@ -594,7 +594,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_7"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image7"
@@ -689,7 +689,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout_8"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image8"

@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
+
+import com.cookandroid.jlptvocabularyapplication.database.screens.ChapterRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -27,5 +30,15 @@ public class MainActivity extends AppCompatActivity {
         buttonTextArraylist = new ArrayList<>();
         levelRecyclerViewAdapter = new LevelRecyclerViewAdapter(buttonTextArraylist);
         recyclerView.setAdapter(levelRecyclerViewAdapter);
+
+
+        RecyclerView recyclerView1 = (RecyclerView) findViewById(R.id.chapter_recyclerview);
+        recyclerView1.addItemDecoration(new DividerItemDecoration(getApplicationContext(),DividerItemDecoration.VERTICAL));
+
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = new ChapterRecyclerViewAdapter(new ArrayList<TextView>());
+        recyclerView1.setAdapter(chapterRecyclerViewAdapter);
+
     }
 }
