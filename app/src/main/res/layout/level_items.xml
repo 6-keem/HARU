@@ -8,39 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <Button
+        <ToggleButton
             android:background="@drawable/style_level_button"
-            android:id="@+id/level_all"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_margin="8dp"/>
-        <Button
-            android:background="@drawable/style_level_button"
-            android:id="@+id/level_n5"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_margin="8dp"/>
-        <Button
-            android:background="@drawable/style_level_button"
-            android:id="@+id/level_n4"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_margin="8dp"/>
-        <Button
-            android:background="@drawable/style_level_button"
-            android:id="@+id/level_n3"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_margin="8dp"/>
-        <Button
-            android:background="@drawable/style_level_button"
-            android:id="@+id/level_n2"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_margin="8dp"/>
-        <Button
-            android:background="@drawable/style_level_button"
-            android:id="@+id/level_n1"
+            android:id="@+id/level_item"
             android:layout_width="80dp"
             android:layout_height="35dp"
             android:layout_margin="8dp"/>

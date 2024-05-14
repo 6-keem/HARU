@@ -5,4 +5,7 @@
     <color name="foreground_color_gray">#B3B3B3</color>
     <color name="button_color">#FF282A36</color>
     <color name="icon_color">#FFFFFFFF</color>
+    <color name="button_checked_background_color">#565A73</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="button_checked_text_color">#FFFFFF</color>
 </resources>
