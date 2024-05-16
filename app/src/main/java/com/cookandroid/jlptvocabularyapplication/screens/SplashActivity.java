@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.splash;
+package com.cookandroid.jlptvocabularyapplication.screens;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.splashscreen.SplashScreen;
 
-import com.cookandroid.jlptvocabularyapplication.MainActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.MainActivity;
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.importdatabase.InsertTableHandler;
 import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;

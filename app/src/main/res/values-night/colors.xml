@@ -8,4 +8,5 @@
     <color name="button_checked_background_color">#565A73</color>
     <color name="button_text_color">#FFFFFF</color>
     <color name="button_checked_text_color">#FFFFFF</color>
+    <color name="card_color">#282A36</color>
 </resources>

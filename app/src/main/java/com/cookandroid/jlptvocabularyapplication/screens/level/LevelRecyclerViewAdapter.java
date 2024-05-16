@@ -9,6 +9,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cookandroid.jlptvocabularyapplication.screens.MainActivity;
 import com.cookandroid.jlptvocabularyapplication.R;
 
 import java.util.ArrayList;
@@ -17,8 +18,10 @@ public class LevelRecyclerViewAdapter extends RecyclerView.Adapter<LevelRecycler
 
     private ArrayList<String> stringArrayList = null;
     private ArrayList<ToggleButton> toggleButtons = new ArrayList<>();
-    public LevelRecyclerViewAdapter(ArrayList<String> stringArrayList){
+    private MainActivity activity = null;
+    public LevelRecyclerViewAdapter(MainActivity activity, ArrayList<String> stringArrayList){
         this.stringArrayList = stringArrayList;
+        this.activity = activity;
     }
 
     @NonNull
@@ -50,12 +53,16 @@ public class LevelRecyclerViewAdapter extends RecyclerView.Adapter<LevelRecycler
             super(itemView);
             toggleButton = (ToggleButton) itemView.findViewById(R.id.level_item);
             toggleButton.setOnCheckedChangeListener((compoundButton, b) -> {
-                for(ToggleButton button : toggleButtons) {
-                    button.setBackground(itemView.getResources().getDrawable(R.drawable.style_level_button));
-                    button.setTextColor(itemView.getResources().getColor(R.color.button_text_color));
+                int level = 0;
+                for(int i = 0 ; i < toggleButtons.size() ; i ++){
+                    if(compoundButton.equals(toggleButtons.get(i)))
+                        level = i;
+                    toggleButtons.get(i).setBackground(itemView.getResources().getDrawable(R.drawable.style_level_button));
+                    toggleButtons.get(i).setTextColor(itemView.getResources().getColor(R.color.button_text_color));
                 }
                 compoundButton.setBackground(itemView.getResources().getDrawable(R.drawable.style_level_button_checked));
                 compoundButton.setTextColor(itemView.getResources().getColor(R.color.button_checked_text_color));
+                activity.changeFragment(level);
             });
             if(toggleButtons.size() == 0)
                 toggleButton.setChecked(true);

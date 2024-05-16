@@ -3,5 +3,6 @@
     <style name="Base.Theme.AndroidFinalTermProject" parent="Theme.AppCompat.DayNight">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

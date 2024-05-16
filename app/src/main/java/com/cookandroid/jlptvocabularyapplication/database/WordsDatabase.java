@@ -20,6 +20,7 @@ public abstract class WordsDatabase extends RoomDatabase {
                             WordsDatabase.class, ("jlpt.db"))
                     .setJournalMode(JournalMode.TRUNCATE)
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
             wordsDatabase.beginTransaction();
             wordsDatabase.endTransaction();

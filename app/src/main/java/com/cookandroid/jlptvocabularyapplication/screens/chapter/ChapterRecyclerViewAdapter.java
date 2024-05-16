@@ -1,9 +1,11 @@
 package com.cookandroid.jlptvocabularyapplication.screens.chapter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -17,12 +19,19 @@ import com.cookandroid.jlptvocabularyapplication.R;
 import java.util.ArrayList;
 
 public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecyclerViewAdapter.ChapterViewHolder> {
-
+    private OnItemClickListener mListener = null;
     private ArrayList<ChapterData> chapterData;
     @SuppressLint("NotifyDataSetChanged")
     public ChapterRecyclerViewAdapter(ArrayList<ChapterData> chapterData){
         this.chapterData = chapterData;
         notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.mListener = listener;
     }
     @NonNull
     @Override
@@ -41,7 +50,7 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         return chapterData.size();
     }
 //     Image, Title, Progressbar
-    public static class ChapterViewHolder extends RecyclerView.ViewHolder{
+    public class ChapterViewHolder extends RecyclerView.ViewHolder {
         TextView chapterTitle, description;
         ProgressBar progressBar;
         LinearLayout linearLayout;
@@ -54,6 +63,16 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
             linearLayout = (LinearLayout) itemView.findViewById(R.id.chapter_background);
             imageView = (ImageView) itemView.findViewById(R.id.chapter_image);
             progressBar = (ProgressBar) itemView.findViewById(R.id.chapter_progress_bar);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION){
+                        if(mListener != null)
+                            mListener.onItemClick(view, position);
+                    }
+                }
+            });
         }
         public void onBind(ChapterData chapterData){
             chapterTitle.setText(chapterData.getTitle());

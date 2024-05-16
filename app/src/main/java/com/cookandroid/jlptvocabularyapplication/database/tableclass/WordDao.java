@@ -33,9 +33,12 @@ public interface WordDao {
     @Query("SELECT * FROM word")
     LiveData<List<Word>> getAllWords();
 
-    @Query("SELECT * FROM word WHERE star_count > 0 and word_id > 0 and word_id < 100")
-    List<Word> getWords();
+    @Query("SELECT * FROM word WHERE level = :level and word_id >= :begin and word_id <= :end")
+    List<Word> getWords(int level, int begin, int end);
+
+    @Query("SELECT * FROM word WHERE level = :level limit 1")
+    int getLevelsFirstWordID(int level);
 
     @Query("SELECT count(*) FROM word WHERE level = :level and star_count > :star_count")
-    int getWordsCount(int level, int star_count);
+    int getWordsCount(int level, int star_count );
 }
