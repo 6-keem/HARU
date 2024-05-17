@@ -57,9 +57,18 @@
             android:textColor="@color/card_gray"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/japanese_back"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/japanese_back" />
+
+        <ImageButton
+            android:id="@+id/tts_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/speacker"
+            app:layout_constraintTop_toTopOf="@+id/furigana"
+            app:layout_constraintStart_toEndOf="@+id/furigana" />
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -4,8 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Browser;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CardFragment extends Fragment {
     private LinearLayout front, back;
@@ -81,6 +84,7 @@ public class CardFragment extends Fragment {
         TextView wordClass = (TextView) view.findViewById(R.id.word_class);
         TextView japanese = (TextView) view.findViewById(R.id.japanese_back);
         TextView sentenceMeaning = (TextView) view.findViewById(R.id.sentence_meaning);
+        ImageButton ttsButton = (ImageButton) view.findViewById(R.id.tts_button);
         ImageButton naverButton = (ImageButton) view.findViewById(R.id.naver);
 
         wordClass.setText(cardData.getWordClass());
@@ -102,6 +106,7 @@ public class CardFragment extends Fragment {
         String mean = cardData.getWordMeaning().get(0);
         meaning.setText(mean);
         japanese.setText(cardData.getJapanese());
+
         skipButton.setOnClickListener(v -> {
             if(v != null)
                 skipButtonOnClickListener.onSkipClick(v);
@@ -111,6 +116,10 @@ public class CardFragment extends Fragment {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             intent.putExtra(Browser.EXTRA_APPLICATION_ID, getContext().getPackageName());
             startActivity(intent);
+        });
+        ttsButton.setOnClickListener(v -> {
+            MyTextToSpeech.getInstance(getContext())
+                    .speak(japanese.getText().toString(),TextToSpeech.QUEUE_ADD,null,null);
         });
     }
 

@@ -26,6 +26,7 @@ import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment
 import com.cookandroid.jlptvocabularyapplication.screens.study.CardData;
 import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.study.CardPagerAdapter;
+import com.cookandroid.jlptvocabularyapplication.screens.study.MyTextToSpeech;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class StudyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.study);
 
+        MyTextToSpeech.getInstance(getApplicationContext());
         Intent intent = getIntent();
         try {
             level = intent.getExtras().getInt("level");
