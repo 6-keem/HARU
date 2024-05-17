@@ -21,16 +21,17 @@ import com.cookandroid.jlptvocabularyapplication.screens.StudyActivity;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ChapterFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ChapterFragment extends Fragment {
     private int level, totalWordCount, count;
     private int factor = 150, lastCount = 150;
     private ArrayList<ChapterData> chapterDataArrayList = new ArrayList<>();
+    private int[] styles = {R.drawable.style_unit_test, R.drawable.style_unit_1, R.drawable.style_unit_2,
+            R.drawable.style_unit_3, R.drawable.style_unit_4,R.drawable.style_unit_5,
+            R.drawable.style_unit_6,R.drawable.style_unit_7, R.drawable.style_unit_8 };
 
+    private int[] icon = {R.drawable.chapter_test, R.drawable.chapter_1, R.drawable.chapter_2,
+            R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
+            R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level, int totalWordCount) {
         this.level = level;
@@ -40,35 +41,13 @@ public class ChapterFragment extends Fragment {
         try {
             for(int i = 0 ; i < count ; i ++){
                 ChapterData chapterData = null;
-                Drawable background = null;
-                int imageID = 0;
                 if(i == 0)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_test),
-                            R.drawable.chapter_test,"JLPT 5","",40,150);
-                else if(i == 1)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_1),
-                            R.drawable.chapter_test,"JLPT 5","",40,150);
-                else if(i == 2)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_2),
-                            R.drawable.chapter_1,"UNIT 1","",20,150);
-                else if(i == 3)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_3),
-                            R.drawable.chapter_2,"UNIT 2","",60,150);
-                else if(i == 4)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_4),
-                            R.drawable.chapter_3,"UNIT 3","",44,150);
-                else if(i == 5)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_5),
-                            R.drawable.chapter_4,"UNIT 4","",22,150);
-                else if(i == 6)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_6),
-                            R.drawable.chapter_5,"UNIT 5","",95,150);
-                else if(i == 7)
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_7),
-                            R.drawable.chapter_6,"UNIT 6","",130,150);
+                    chapterData = new ChapterData(context.getDrawable(styles[i]),
+                            icon[i], ("JLPT " + level), "", 0, 0 );
                 else
-                    chapterData = new ChapterData(context.getDrawable(R.drawable.style_unit_8),
-                            R.drawable.chapter_7,"UNIT 7","",150,150);
+                    chapterData = new ChapterData(context.getDrawable(styles[i]),
+                            icon[i], ("UNIT " + i), "", 0, 0 );
+
                 chapterDataArrayList.add(chapterData);
             }
         } catch (NullPointerException e){ }

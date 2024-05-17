@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.jlptvocabularyapplication.R;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.Sentence;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class CardData{
     private String kanji, japanese, wordClass, korean, furigana, link;
+    private List<Sentence> sentences;
     private String[] otherJapanese;
     private List<String> wordMeaning;
     private int starCount;
@@ -29,6 +31,7 @@ public class CardData{
             furigana = japanese = word.getFurigana();
             kanji = null;
         }
+        sentences = word.getSentences();
         wordClass = word.getWordClass();
         link = word.getLink();
         starCount = word.getStarCount();
@@ -69,5 +72,9 @@ public class CardData{
 
     public int getStarCount() {
         return starCount;
+    }
+
+    public List<Sentence> getSentences() {
+        return sentences;
     }
 }

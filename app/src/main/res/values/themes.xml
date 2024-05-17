@@ -1,13 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AndroidFinalTermProject" parent="Theme.AppCompat.Light">
+    <style name="Base.Theme.AndroidFinalTermProject" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
         <item name="android:windowIsTranslucent">true</item>
         <item name="postSplashScreenTheme">@style/Theme.AndroidFinalTermProject</item>
-        <item name="windowNoTitle">true</item>
     </style>
-    <style name="Theme.AndroidFinalTermProject" parent="Base.Theme.AndroidFinalTermProject" />
+    <style name="Theme.AndroidFinalTermProject" parent="Theme.AppCompat.Light.NoActionBar" />
 </resources>

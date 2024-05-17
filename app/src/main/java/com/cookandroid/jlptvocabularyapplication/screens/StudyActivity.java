@@ -2,7 +2,13 @@ package com.cookandroid.jlptvocabularyapplication.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
+import android.widget.Chronometer;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -23,10 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudyActivity extends AppCompatActivity {
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
     ArrayList<CardFragment> arrayList = new ArrayList<>();
-    ViewPager2 viewPager = null;
+    private CardPagerAdapter cardPagerAdapter = null;
+    private ViewPager2 viewPager = null;
+    private ProgressBar progressBar = null;
     private int currentPage = 0;
     private int level, factor, position;
     @Override
@@ -41,13 +47,32 @@ public class StudyActivity extends AppCompatActivity {
             position = intent.getExtras().getInt("position");
         } catch (NullPointerException ignore) { }
         setCardItem();
-        CardPagerAdapter cardPagerAdapter = new CardPagerAdapter(this, arrayList);
+        cardPagerAdapter = new CardPagerAdapter(this, arrayList);
         viewPager = (ViewPager2) findViewById(R.id.card_list);
         viewPager.setOffscreenPageLimit(3);
         viewPager.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+        viewPager.setUserInputEnabled(false);
         viewPager.setAdapter(cardPagerAdapter);
         CompositePageTransformer transformer = new CompositePageTransformer();
         transformer.addTransformer(new MarginPageTransformer(8));
+
+        Chronometer chronometer = (Chronometer) findViewById(R.id.chronometer);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
+
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
+//        TextView toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+//        toolbarTitle.setText("JLPT " + level);
+        // TODO: 2024-05-17 DB 정보 가져와서 초기화
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar.setProgress(0);
+        progressBar.setMax(arrayList.size());
+
+        TextView count = (TextView) findViewById(R.id.count);
+        TextView total = (TextView)findViewById(R.id.total_count);
+        count.setText(Integer.toString(0));
+        total.setText("/" + arrayList.size());
 
         transformer.addTransformer( (page, position) -> {
                 float v = 1-Math.abs(position);
@@ -56,20 +81,25 @@ public class StudyActivity extends AppCompatActivity {
 
         for (int i = 0 ; i < arrayList.size() ; i ++){
             CardFragment cardFragment = arrayList.get(i);
-            cardFragment.setOnClickListener(view -> {
+            cardFragment.setSkipButtonOnClickListener(view -> {
                 viewPager.setCurrentItem(++currentPage, true);
+                progressBar.setProgress(currentPage);
+                count.setText(Integer.toString(currentPage));
             });
         }
     }
 
-    void setCardItem(){
+    private void setCardItem(){
         WordDao wordDao = WordsDatabase.getInstance(getApplicationContext()).wordDao();
+
         int beginID = wordDao.getLevelsFirstWordID(level);
         int begin = beginID + (factor * (position - 1));
         int end = begin + factor;
+
         List<Word> words = wordDao.getWords(level, begin, end);
         for (Word word : words){
             arrayList.add(new CardFragment(word));
         }
     }
+
 }

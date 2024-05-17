@@ -34,5 +34,8 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() { return fragmentArrayList.size(); }
 
-    public void addFragment(CardFragment fragment){ fragmentArrayList.add(fragment);}
+    public void addFragment(CardFragment fragment){
+        fragmentArrayList.add(fragment);
+        this.notifyItemInserted(fragmentArrayList.size() - 1);
+    }
 }
