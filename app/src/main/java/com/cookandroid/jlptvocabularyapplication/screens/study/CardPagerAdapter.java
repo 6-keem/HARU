@@ -38,4 +38,6 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         fragmentArrayList.add(fragment);
         this.notifyItemInserted(fragmentArrayList.size() - 1);
     }
+
+
 }

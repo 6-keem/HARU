@@ -6,9 +6,9 @@
     android:padding="8dp">
 
     <include android:id="@+id/card_back"
-        layout="@layout/card_back"/>
+        layout="@layout/study_card_back_fragment"/>
     <include android:id="@+id/card_front"
-        layout="@layout/card_front"/>
+        layout="@layout/study_card_front_fragment"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

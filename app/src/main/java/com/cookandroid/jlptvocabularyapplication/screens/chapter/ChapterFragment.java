@@ -3,7 +3,6 @@ package com.cookandroid.jlptvocabularyapplication.screens.chapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,9 +24,9 @@ public class ChapterFragment extends Fragment {
     private int level, totalWordCount, count;
     private int factor = 150, lastCount = 150;
     private ArrayList<ChapterData> chapterDataArrayList = new ArrayList<>();
-    private int[] styles = {R.drawable.style_unit_test, R.drawable.style_unit_1, R.drawable.style_unit_2,
-            R.drawable.style_unit_3, R.drawable.style_unit_4,R.drawable.style_unit_5,
-            R.drawable.style_unit_6,R.drawable.style_unit_7, R.drawable.style_unit_8 };
+    private int[] styles = {R.drawable.chapter_shadow_test, R.drawable.chapter_shadow_level_1, R.drawable.chapter_shadow_level_2,
+            R.drawable.chapter_shadow_level_3, R.drawable.chapter_shadow_level_4,R.drawable.chapter_shadow_level_5,
+            R.drawable.chapter_shadow_level_6,R.drawable.chapter_shadow_level_7, R.drawable.chapter_shadow_level_7 };
 
     private int[] icon = {R.drawable.chapter_test, R.drawable.chapter_1, R.drawable.chapter_2,
             R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
@@ -77,7 +76,7 @@ public class ChapterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.chapter_fragment, container, false);
+        View view = inflater.inflate(R.layout.chapter_recyclerview, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chapter_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = new ChapterRecyclerViewAdapter(chapterDataArrayList);

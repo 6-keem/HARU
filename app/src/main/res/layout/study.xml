@@ -7,8 +7,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_study"
-        android:elevation="10dp"/>
+        layout="@layout/study_toolbar"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="356dp"
@@ -98,10 +97,10 @@
         android:background="@color/background_color"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingStart="30dp"
-        android:paddingTop="30dp"
-        android:paddingEnd="30dp"
-        android:paddingBottom="30dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
         app:layout_constraintBottom_toTopOf="@id/guidline_card_bottom"
         app:layout_constraintTop_toBottomOf="@id/guidline_card_top"/>
 
@@ -125,7 +124,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="85dp" />
+        app:layout_constraintGuide_begin="75dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_card_left"
@@ -146,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="240dp" />
+        app:layout_constraintGuide_begin="230dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidline_card_bottom"

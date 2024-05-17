@@ -1,31 +1,19 @@
 package com.cookandroid.jlptvocabularyapplication.screens;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.View;
-import android.widget.Button;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.WordDao;
-import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardData;
 import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardPagerAdapter;
 
 import java.util.ArrayList;
 
@@ -37,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_header);
+        setContentView(R.layout.main);
         RecyclerView recyclerView = (RecyclerView)  findViewById(R.id.level_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
         ArrayList<String> levelItems = setLevelItem();

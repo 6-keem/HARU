@@ -27,7 +27,7 @@ public class LevelRecyclerViewAdapter extends RecyclerView.Adapter<LevelRecycler
     @NonNull
     @Override
     public LevelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.level_items,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_level_item,parent,false);
         return new LevelViewHolder(view);
     }
 

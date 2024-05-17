@@ -2,19 +2,19 @@ package com.cookandroid.jlptvocabularyapplication.screens.study;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Browser;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.jlptvocabularyapplication.R;
@@ -36,7 +36,7 @@ public class CardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.pager_card_item, container, false);
+        View view = inflater.inflate(R.layout.study_pager, container, false);
         setFrontCard(view);
         setBackCard(view);
         return view;
@@ -61,8 +61,8 @@ public class CardFragment extends Fragment {
                 back.setCameraDistance(scale * 8000);
                 ((Button) front.findViewById(R.id.skip_front)).setVisibility(View.GONE);
                 ((Button) front.findViewById(R.id.check)).setVisibility(View.GONE);
-                Animator frontAnimator = AnimatorInflater.loadAnimator(getContext(), R.animator.front_animator);
-                Animator backAnimator = AnimatorInflater.loadAnimator(getContext(), R.animator.back_animator);
+                Animator frontAnimator = AnimatorInflater.loadAnimator(getContext(), R.animator.flipfront_animator);
+                Animator backAnimator = AnimatorInflater.loadAnimator(getContext(), R.animator.flipback_animator);
 
                 frontAnimator.setTarget(front);
                 backAnimator.setTarget(back);
@@ -81,6 +81,7 @@ public class CardFragment extends Fragment {
         TextView wordClass = (TextView) view.findViewById(R.id.word_class);
         TextView japanese = (TextView) view.findViewById(R.id.japanese_back);
         TextView sentenceMeaning = (TextView) view.findViewById(R.id.sentence_meaning);
+        ImageButton naverButton = (ImageButton) view.findViewById(R.id.naver);
 
         wordClass.setText(cardData.getWordClass());
         if(cardData.getKanji() == null)
@@ -90,8 +91,8 @@ public class CardFragment extends Fragment {
 
         try {
             List<Sentence> sentenceList = cardData.getSentences();
-            sentence.setText(sentenceList.get(0).getJpSentence());
-            sentenceMeaning.setText("-" + sentenceList.get(0).getKrSentence());
+            sentence.setText("ㆍ" + sentenceList.get(0).getJpSentence());
+            sentenceMeaning.setText("ㆍ" + sentenceList.get(0).getKrSentence());
         } catch (IndexOutOfBoundsException e){
             sentence.setVisibility(View.GONE);
             sentenceMeaning.setVisibility(View.GONE);
@@ -105,6 +106,12 @@ public class CardFragment extends Fragment {
             if(v != null)
                 skipButtonOnClickListener.onSkipClick(v);
         });
+        naverButton.setOnClickListener(v -> {
+            String link = "https://ja.dict.naver.com/#/entry/jako/" + cardData.getLink();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            intent.putExtra(Browser.EXTRA_APPLICATION_ID, getContext().getPackageName());
+            startActivity(intent);
+        });
     }
 
     public interface SkipButtonOnClickListener {
@@ -114,4 +121,11 @@ public class CardFragment extends Fragment {
         this.skipButtonOnClickListener = listener;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        cardData = null;
+        front = back = null;
+        skipButtonOnClickListener = null;
+    }
 }

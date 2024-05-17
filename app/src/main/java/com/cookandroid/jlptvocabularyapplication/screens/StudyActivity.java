@@ -1,11 +1,13 @@
 package com.cookandroid.jlptvocabularyapplication.screens;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
@@ -35,6 +37,7 @@ public class StudyActivity extends AppCompatActivity {
     private ProgressBar progressBar = null;
     private int currentPage = 0;
     private int level, factor, position;
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +64,14 @@ public class StudyActivity extends AppCompatActivity {
         chronometer.start();
 
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
-//        TextView toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        TextView toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        ImageButton imageButton = (ImageButton) findViewById(R.id.back_arrow);
+        toolbarTitle.setText("N" + level + " UNIT " + position);
+        imageButton.setOnClickListener(v -> {
+           finish();
+        });
         setSupportActionBar(toolbar);
-//        toolbarTitle.setText("JLPT " + level);
+
         // TODO: 2024-05-17 DB 정보 가져와서 초기화
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.setProgress(0);
@@ -102,4 +110,11 @@ public class StudyActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        viewPager.setAdapter(null);
+        arrayList = null;
+        cardPagerAdapter = null;
+    }
 }
