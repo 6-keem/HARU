@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
+
 import java.util.ArrayList;
 
 public class CardPagerAdapter extends FragmentStateAdapter {
@@ -25,7 +27,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() { return fragmentArrayList.size(); }
 
-    public void addFragment(CardFragment fragment){
+    public void addFragment(NormalCardFragment fragment){
         fragmentArrayList.add(fragment);
         this.notifyItemInserted(fragmentArrayList.size() - 1);
     }

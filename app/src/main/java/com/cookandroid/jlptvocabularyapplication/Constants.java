@@ -22,4 +22,8 @@ public class Constants {
         put("제주도","Jeju");
     }};
 
+    public static final int KANJI = 1;
+    public static final int FURIGANA = 2;
+    public static final int MEANING = 3;
+
 }

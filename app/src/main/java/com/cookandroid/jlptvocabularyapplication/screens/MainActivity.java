@@ -15,7 +15,7 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.Us
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
-import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.CardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.NormalCardFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
     ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
-    ArrayList<CardFragment> arrayList = new ArrayList<>();
+    ArrayList<NormalCardFragment> arrayList = new ArrayList<>();
     int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             // TODO: 2024-05-18 전체 단어 개수 넣어야함
             userDataDao.insertUserData(new UserData(0,0, 0));
             for(int i = 1 ; i < 6 ; i ++){
-                int total = wordDao.getWordsCount(i,0);
+                int total = wordDao.getWordsCount(Integer.toString(i),0);
                 if(total <= 1200){
                     int iterationMax = total / 150;
                     UserData userData = new UserData(i, 0, total);

@@ -22,7 +22,7 @@
             android:textSize="60sp"
             android:textStyle="bold"
             android:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_front"
+            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -38,7 +38,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_front" />
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal" />
 
         <Button
             android:id="@+id/skip_front"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@id/check"/>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_front"
+            android:id="@+id/guideline_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

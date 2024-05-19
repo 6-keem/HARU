@@ -16,31 +16,34 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
+import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardFragment extends Fragment {
+public class NormalCardFragment extends CardFragment {
     private LinearLayout front, back;
-    private CardData cardData;
-    private SkipButtonOnClickListener skipButtonOnClickListener = null;
-
-    public CardFragment(Word word){
-        this.cardData = new CardData(word);
+    public NormalCardFragment(){}
+    public NormalCardFragment(Word word){
+        super(word);
     }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.study_pager, container, false);
+        setCardLayout(view);
+        return view;
+    }
+
+    @Override
+    protected void setCardLayout(View view) {
         setFrontCard(view);
         setBackCard(view);
-        return view;
     }
 
     private void setFrontCard(View view){
@@ -52,7 +55,7 @@ public class CardFragment extends Fragment {
         textView.setText(japanese);
         skipButton.setOnClickListener(v -> {
             if(v != null)
-                skipButtonOnClickListener.onSkipClick(v);
+                customOnClickListener.onClick(v);
         });
 
         checkButton.setOnClickListener(v -> {
@@ -107,7 +110,7 @@ public class CardFragment extends Fragment {
 
         skipButton.setOnClickListener(v -> {
             if(v != null)
-                skipButtonOnClickListener.onSkipClick(v);
+                customOnClickListener.onClick(v);
         });
         naverButton.setOnClickListener(v -> {
             String link = "https://ja.dict.naver.com/#/entry/jako/" + cardData.getLink();
@@ -121,11 +124,8 @@ public class CardFragment extends Fragment {
         });
     }
 
-    public interface SkipButtonOnClickListener {
-        void onSkipClick(View view);
-    }
-    public void setSkipButtonOnClickListener(SkipButtonOnClickListener listener){
-        this.skipButtonOnClickListener = listener;
+    public void setCustomOnClickListener(CustomOnClickListener listener){
+        this.customOnClickListener = listener;
     }
 
     @Override
@@ -133,6 +133,5 @@ public class CardFragment extends Fragment {
         super.onDestroyView();
         cardData = null;
         front = back = null;
-        skipButtonOnClickListener = null;
     }
 }

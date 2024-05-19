@@ -8,22 +8,6 @@ import androidx.room.Transaction;
 
 import java.util.List;
 
-/*
-            https://developer.android.com/training/data-storage/room/accessing-data?hl=ko#java
-            쿼리문에 변수 사용
-            @Query("SELECT * FROM word WEHRE word_id > :start and word_id < :end")
-            public List<Word> getWordsCustom(int start, int end)
-
-
-            // 발음 비슷한 거 랜덤해서 4개 가져옴 furigana 파싱 필요
-            @Query("SELECT *
-                    FROM word
-                    WEHRE furigana like :furigana and ORDER BY RAND() LIMIT 4")
-            public List<Word> getWordsCustom(String furigana)
- */
-
-
-
 @Dao
 public interface WordDao {
     @Insert
@@ -33,12 +17,38 @@ public interface WordDao {
     @Query("SELECT * FROM word")
     LiveData<List<Word>> getAllWords();
 
-    @Query("SELECT * FROM word WHERE level = :level and word_id >= :begin and word_id < :end")
-    List<Word> getWords(int level, int begin, int end);
+    @Query("SELECT * FROM word WHERE level like :level ORDER BY RANDOM() LIMIT 20")
+    List<Word> getWordForTest(String level);
 
-    @Query("SELECT * FROM word WHERE level = :level limit 1")
-    int getLevelsFirstWordID(int level);
+    // kanji가 없는경우 furigana로 표시
+    @Query("SELECT * FROM word " +
+            "WHERE word_meaning != :meaning " +
+            "ORDER BY RANDOM() LIMIT :limit")
+    List<Word> getWordForKanjiProblem(String meaning, int limit);
 
-    @Query("SELECT count(*) FROM word WHERE level = :level and star_count > :star_count")
-    int getWordsCount(int level, int star_count );
+    // 부분 문자열 검색으로 중복된 것 나올 수 있음
+    // kanji가 없을 경우 다른 문제 선택
+    @Query("SELECT * FROM word " +
+            "WHERE (kanji LIKE '%' || :kanjiToken || '%'  or furigana LIKE '%' || :furiganaToken || '%') and furigana != :furigana " +
+            "ORDER BY RANDOM() LIMIT :limit")
+    List<Word> getWordForMeaningProblem(String kanjiToken, String furiganaToken, String furigana, int limit);
+
+    // 부분 문자열 검색으로 중복된 것 나올 수 있음
+    @Query("SELECT furigana FROM word " +
+            "WHERE furigana LIKE '%' || :furiganaToken and furigana != :furigana and length(kanji) != 0 " +
+            "ORDER BY RANDOM() LIMIT :limit")
+    List<String> getWordsFuriganaProblem(String furiganaToken, String furigana, int limit);
+    @Query("SELECT furigana FROM word " +
+            "WHERE furigana LIKE '%' || :furiganaToken and furigana != :furigana and length(kanji) == 0 " +
+            "ORDER BY RANDOM() LIMIT :limit")
+    List<String> getWordsFuriganaProblemWhenFurigana(String furiganaToken, String furigana, int limit);
+
+    @Query("SELECT * FROM word WHERE level LIKE :level and word_id >= :begin and word_id < :end")
+    List<Word> getWords(String level, int begin, int end);
+
+    @Query("SELECT * FROM word WHERE level LIKE :level limit 1")
+    int getLevelsFirstWordID(String level);
+
+    @Query("SELECT count(*) FROM word WHERE level LIKE :level and star_count > :star_count")
+    int getWordsCount(String level, int star_count );
 }

@@ -19,7 +19,8 @@ import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
-import com.cookandroid.jlptvocabularyapplication.screens.StudyActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.StudyNormalActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.StudyTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ public class ChapterFragment extends Fragment {
     private int[] icon = {R.drawable.chapter_test, R.drawable.chapter_1, R.drawable.chapter_2,
             R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
             R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
+
+    public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level) {
         this.level = level;
@@ -85,14 +88,15 @@ public class ChapterFragment extends Fragment {
         ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = new ChapterRecyclerViewAdapter(chapterDataArrayList);
         recyclerView.setAdapter(chapterRecyclerViewAdapter);
 
-        chapterRecyclerViewAdapter.setOnItemClickListener(new ChapterRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Intent intent = new Intent(getActivity(), StudyActivity.class).setAction("your.custom.action");
-                intent.putExtra("level", level);
-                intent.putExtra("position", position);
-                startActivity(intent);
-            }
+        chapterRecyclerViewAdapter.setOnItemClickListener((v, position) -> {
+            Intent intent;
+            if(position == 0)
+                intent = new Intent(getActivity(), StudyTestActivity.class).setAction("Study_Test");
+            else
+                intent = new Intent(getActivity(), StudyNormalActivity.class).setAction("Study_NORMAL");
+            intent.putExtra("level", level);
+            intent.putExtra("position", position);
+            startActivity(intent);
         });
         return view;
     }

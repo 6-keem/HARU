@@ -27,7 +27,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".screens.StudyActivity"
+            android:name=".screens.StudyNormalActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".screens.StudyTestActivity"
             android:exported="false">
         </activity>
         <activity
