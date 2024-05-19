@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database.tableclass;
+package com.cookandroid.jlptvocabularyapplication.database.tableclass.word;
 
 public class Sentence {
     private String jpSentence;

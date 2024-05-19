@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication;
+package com.cookandroid.jlptvocabularyapplication.weather;
 
 
 import retrofit2.Retrofit;

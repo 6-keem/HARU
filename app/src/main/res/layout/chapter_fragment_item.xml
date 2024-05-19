@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="120dp"
         android:background="@drawable/chapter_shadow_test">
 
         <ImageView
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="75dp" />
+            app:layout_constraintGuide_begin="80dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_chapter_outer_Bottom"

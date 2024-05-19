@@ -10,12 +10,15 @@ import android.os.Bundle;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.WordDao;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.CardFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        initializeUserData();
+
         RecyclerView recyclerView = (RecyclerView)  findViewById(R.id.level_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
         ArrayList<String> levelItems = setLevelItem();
@@ -50,14 +55,41 @@ public class MainActivity extends AppCompatActivity {
         return levelItems;
     }
 
-    private void setChapterFragments(){
+    private void initializeUserData(){
+        UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
         WordDao wordDao = WordsDatabase.getInstance(getApplicationContext()).wordDao();
-        fragmentArrayList.add(new ChapterFragment(getApplicationContext(),
-                0, wordDao.getWordsCount(0,0)));
 
+        List<UserData> userDatas = userDataDao.getAllUserData();
+        if(userDatas.size() == 0){
+            // TODO: 2024-05-18 전체 단어 개수 넣어야함
+            userDataDao.insertUserData(new UserData(0,0, 0));
+            for(int i = 1 ; i < 6 ; i ++){
+                int total = wordDao.getWordsCount(i,0);
+                if(total <= 1200){
+                    int iterationMax = total / 150;
+                    UserData userData = new UserData(i, 0, total);
+                    userData.chapterCount = iterationMax;
+                    userDataDao.insertUserData(userData);
+                    for(int j = 1 ; j < iterationMax ; j ++)
+                        userDataDao.insertUserData(new UserData(i,j,150));
+                    userDataDao.insertUserData(new UserData(i, iterationMax, total % 150));
+                } else {
+                    int factor = (total / 8) + 1;
+                    UserData userData = new UserData(i, 0, total);
+                    userData.chapterCount = 8;
+                    userDataDao.insertUserData(userData);
+                    for(int j = 1 ; j < 8 ; j ++)
+                        userDataDao.insertUserData(new UserData(i,j,factor));
+                    userDataDao.insertUserData(new UserData(i,8,total % factor));
+                }
+            }
+        }
+    }
+
+    private void setChapterFragments(){
+        fragmentArrayList.add(new ChapterFragment(getApplicationContext(),0));
         for(int i = 5 ; i >= 1 ; i--)
-            fragmentArrayList.add(new ChapterFragment(getApplicationContext(), i,
-                    wordDao.getWordsCount(i,0)));
+            fragmentArrayList.add(new ChapterFragment(getApplicationContext(), i));
     }
 
     public void changeFragment(int level){

@@ -76,11 +76,10 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         }
         public void onBind(ChapterData chapterData){
             chapterTitle.setText(chapterData.getTitle());
-            progressBar.setProgress(chapterData.getCount());
+            progressBar.setProgress(chapterData.getStudiedCount());
             progressBar.setMax(chapterData.getTotal());
             constraintLayout.setBackground(chapterData.getBackground());
             imageView.setImageResource(chapterData.getImageID());
         }
     }
-
 }

@@ -16,13 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cookandroid.jlptvocabularyapplication.R;
+import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.screens.StudyActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChapterFragment extends Fragment {
-    private int level, totalWordCount, count;
-    private int factor = 150, lastCount = 150;
+    private int level;
     private ArrayList<ChapterData> chapterDataArrayList = new ArrayList<>();
     private int[] styles = {R.drawable.chapter_shadow_test, R.drawable.chapter_shadow_level_1, R.drawable.chapter_shadow_level_2,
             R.drawable.chapter_shadow_level_3, R.drawable.chapter_shadow_level_4,R.drawable.chapter_shadow_level_5,
@@ -32,34 +35,34 @@ public class ChapterFragment extends Fragment {
             R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
             R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
     @SuppressLint("UseCompatLoadingForDrawables")
-    public ChapterFragment(Context context, int level, int totalWordCount) {
+    public ChapterFragment(Context context, int level) {
         this.level = level;
-        this.totalWordCount = totalWordCount;
-        setWordCount();
+        setWordCount(context);
         // TODO: 2024-05-14 쿼리로 진행도 가져오기
         try {
-            for(int i = 0 ; i < count ; i ++){
-                ChapterData chapterData = null;
-                if(i == 0)
-                    chapterData = new ChapterData(context.getDrawable(styles[i]),
-                            icon[i], ("JLPT " + level), "", 0, 0 );
-                else
-                    chapterData = new ChapterData(context.getDrawable(styles[i]),
-                            icon[i], ("UNIT " + i), "", 0, 0 );
-
-                chapterDataArrayList.add(chapterData);
+            UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
+            UserData data = userDataDao.getChapterData(level, 0);
+            if(level == 0){
+                chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[0]),
+                        icon[0], "JLPT ALL", "", userDataDao.getChapterData(level, 0)));
+            }
+            else {
+                int total = data.chapterCount;
+                for(int i = 0; i <= total ; i ++){
+                    if(i == 0) {
+                        chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
+                                icon[i], ("JLPT " + level), "", data));
+                    } else {
+                        chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
+                                icon[i], ("UNIT " + i), "", userDataDao.getChapterData(level, i)));
+                    }
+                }
             }
         } catch (NullPointerException e){ }
     }
-
-    private void setWordCount(){
-        if(totalWordCount > 1200) {
-            factor = (((totalWordCount / 8) / 10) + 1) * 10;
-            lastCount = totalWordCount - factor * 7;
-            count = 9;
-        } else {
-            count = totalWordCount / 150 + 1;
-        }
+    private List<UserData> setWordCount(Context context){
+        UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
+        return userDataDao.getDatasEachLevel(level);
     }
 
     @Override
@@ -87,7 +90,6 @@ public class ChapterFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(getActivity(), StudyActivity.class).setAction("your.custom.action");
                 intent.putExtra("level", level);
-                intent.putExtra("factor", factor);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }

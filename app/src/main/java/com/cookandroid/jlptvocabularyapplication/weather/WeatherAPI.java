@@ -3,7 +3,6 @@ package com.cookandroid.jlptvocabularyapplication.weather;
 import android.util.Log;
 
 import com.cookandroid.jlptvocabularyapplication.BuildConfig;
-import com.cookandroid.jlptvocabularyapplication.RetrofitManager;
 import com.cookandroid.jlptvocabularyapplication.weather.pojo.Weather;
 import com.cookandroid.jlptvocabularyapplication.weather.pojo.WeatherRoot;
 

@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database.tableclass;
+package com.cookandroid.jlptvocabularyapplication.database.tableclass.word;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

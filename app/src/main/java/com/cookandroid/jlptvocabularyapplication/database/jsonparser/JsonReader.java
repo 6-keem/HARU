@@ -3,7 +3,7 @@ package com.cookandroid.jlptvocabularyapplication.database.jsonparser;
 import android.content.res.AssetManager;
 import android.util.Log;
 
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

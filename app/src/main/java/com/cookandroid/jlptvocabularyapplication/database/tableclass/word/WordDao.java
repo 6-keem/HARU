@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database.tableclass;
+package com.cookandroid.jlptvocabularyapplication.database.tableclass.word;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -33,7 +33,7 @@ public interface WordDao {
     @Query("SELECT * FROM word")
     LiveData<List<Word>> getAllWords();
 
-    @Query("SELECT * FROM word WHERE level = :level and word_id >= :begin and word_id <= :end")
+    @Query("SELECT * FROM word WHERE level = :level and word_id >= :begin and word_id < :end")
     List<Word> getWords(int level, int begin, int end);
 
     @Query("SELECT * FROM word WHERE level = :level limit 1")

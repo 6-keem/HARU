@@ -1,18 +1,9 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study;
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import com.cookandroid.jlptvocabularyapplication.R;
 
 import java.util.ArrayList;
 

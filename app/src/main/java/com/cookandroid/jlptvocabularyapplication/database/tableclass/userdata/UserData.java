@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.database.tableclass;
+package com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -14,18 +14,22 @@ import java.util.Date;
  */
 @Entity(tableName = "userdata")
 public class UserData implements Serializable {
-
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "case_id")
-    public long caseID;
-
     // 회독 확인
-    @ColumnInfo(name = "count")
-    public long count;
 
-    // Check for last study day
-    @ColumnInfo(name = "date")
-    public Date date = null;
+    public UserData(int level, int chapter, int total){
+        this.level = level;
+        this.chapter = chapter;
+        this.total = total;
+
+        this.count = 0;
+        this.studiedCount = 0;
+    }
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    public int id;
+
+    @ColumnInfo(name = "count")
+    public int count;
 
     // JLPT Level
     @ColumnInfo(name = "level")
@@ -41,28 +45,15 @@ public class UserData implements Serializable {
     @ColumnInfo(name = "studied_count")
     public int studiedCount;
 
-    public long getCaseID() {
-        return caseID;
-    }
+    @ColumnInfo(name = "chapter_count")
+    public int chapterCount;
 
-    public void setCaseID(long caseID) {
-        this.caseID = caseID;
-    }
-
-    public long getCount() {
+    public int getCount() {
         return count;
     }
 
-    public void setCount(long count) {
+    public void setCount(int count) {
         this.count = count;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public int getLevel() {
@@ -95,5 +86,13 @@ public class UserData implements Serializable {
 
     public void setStudiedCount(int studiedCount) {
         this.studiedCount = studiedCount;
+    }
+
+    public int getChapterCount() {
+        return chapterCount;
+    }
+
+    public void setChapterCount(int chapterCount) {
+        this.chapterCount = chapterCount;
     }
 }

@@ -1,7 +1,7 @@
 package com.cookandroid.jlptvocabularyapplication.database.converters;
 
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Sentence;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;

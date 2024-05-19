@@ -2,18 +2,21 @@ package com.cookandroid.jlptvocabularyapplication.screens.chapter;
 
 import android.graphics.drawable.Drawable;
 
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
+
 public class ChapterData {
     private int imageID;
     private Drawable background;
-    private int count, total;
+    private int count, studiedCount, total;
     private String title, description;
-    public ChapterData(Drawable background, int imageID, String title, String description, int count, int total){
+    public ChapterData(Drawable background, int imageID, String title, String description, UserData userData){
         this.imageID = imageID;
         this.background = background;
         this.title = title;
         this.description = description;
-        this.count = count;
-        this.total = total;
+        this.studiedCount = userData.studiedCount;
+        this.count = userData.count;
+        this.total = userData.total;
     }
 
     public int getImageID() {
@@ -38,6 +41,14 @@ public class ChapterData {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getStudiedCount() {
+        return studiedCount;
+    }
+
+    public void setStudiedCount(int studiedCount) {
+        this.studiedCount = studiedCount;
     }
 
     public int getTotal() {

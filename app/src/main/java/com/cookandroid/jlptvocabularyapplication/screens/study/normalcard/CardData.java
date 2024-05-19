@@ -1,19 +1,8 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study;
+package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
-import com.cookandroid.jlptvocabularyapplication.R;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Sentence;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class CardData{

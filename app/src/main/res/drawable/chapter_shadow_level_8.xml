@@ -77,7 +77,7 @@
     <!-- Background -->
     <item android:top="0dp">
         <shape android:shape="rectangle" >
-            <size android:height="70dp" />
+            <size android:height="85dp" />
             <solid android:color="@color/button_color" />
             <corners
                 android:topLeftRadius="35dp"
@@ -86,7 +86,7 @@
                 android:bottomRightRadius="35dp" />
         </shape>
     </item>
-    <item android:top="75dp">
+    <item android:top="85dp">
         <shape android:shape="rectangle" >
             <size android:height="20dp" />
             <solid android:color="@color/unit_7_color" />

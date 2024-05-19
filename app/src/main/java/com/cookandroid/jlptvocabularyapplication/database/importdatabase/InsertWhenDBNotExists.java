@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.jsonparser.JsonReader;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.WordDao;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 
 import java.util.List;
 

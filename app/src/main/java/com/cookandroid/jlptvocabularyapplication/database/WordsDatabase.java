@@ -6,14 +6,16 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.WordDao;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 
-@Database(entities = {Word.class }, version = 1, exportSchema = false)
+@Database(entities = {Word.class, UserData.class }, version = 1, exportSchema = false)
 public abstract class WordsDatabase extends RoomDatabase {
     private static WordsDatabase wordsDatabase = null;
     public abstract WordDao wordDao();
-
+    public abstract UserDataDao userDataDao();
     public static WordsDatabase getInstance(Context context){
         if(wordsDatabase == null){
             wordsDatabase = Room.databaseBuilder(context.getApplicationContext(),
@@ -47,6 +49,7 @@ public abstract class WordsDatabase extends RoomDatabase {
                     .createFromAsset("jlpt.db")
                     .setJournalMode(JournalMode.TRUNCATE)
                     .fallbackToDestructiveMigration()
+                    .allowMainThreadQueries()
                     .build();
             wordsDatabase.beginTransaction();
             wordsDatabase.endTransaction();

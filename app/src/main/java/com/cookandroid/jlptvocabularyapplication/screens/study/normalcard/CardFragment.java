@@ -1,10 +1,9 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study;
+package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Browser;
 import android.speech.tts.TextToSpeech;
@@ -20,12 +19,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.jlptvocabularyapplication.R;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Sentence;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CardFragment extends Fragment {
     private LinearLayout front, back;
@@ -119,7 +117,7 @@ public class CardFragment extends Fragment {
         });
         ttsButton.setOnClickListener(v -> {
             MyTextToSpeech.getInstance(getContext())
-                    .speak(japanese.getText().toString(),TextToSpeech.QUEUE_ADD,null,null);
+                    .speak(cardData.getFurigana(),TextToSpeech.QUEUE_ADD,null,null);
         });
     }
 
