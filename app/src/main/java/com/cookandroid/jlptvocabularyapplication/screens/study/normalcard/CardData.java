@@ -6,11 +6,13 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import java.util.List;
 
 public class CardData{
-    private String kanji, japanese, wordClass, korean, furigana, link;
+    private long wordID;
+    private String kanji, japanese, wordClass, furigana, link;
     private List<Sentence> sentences;
     private String[] otherJapanese;
     private List<String> wordMeaning;
     private int starCount;
+    private boolean isBookmarked;
     public CardData(Word word){
         if(word.kanji.length() != 0) {
             otherJapanese = word.getKanji().split("·");
@@ -20,13 +22,22 @@ public class CardData{
             furigana = japanese = word.getFurigana();
             kanji = null;
         }
+        wordID = word.getWordId();
         sentences = word.getSentences();
         wordClass = word.getWordClass();
         link = word.getLink();
         starCount = word.getStarCount();
         wordMeaning = word.getWordMeaning();
+        isBookmarked = word.isBookmark();
     }
 
+    public long getWordID() {
+        return wordID;
+    }
+
+    public boolean isBookmarked() { return isBookmarked; }
+
+    public void setBookmarked(boolean bookmarked){this.isBookmarked = bookmarked;}
     public String getKanji() {
         return kanji;
     }
@@ -37,10 +48,6 @@ public class CardData{
 
     public String getWordClass() {
         return wordClass;
-    }
-
-    public String getKorean() {
-        return korean;
     }
 
     public String getFurigana() {

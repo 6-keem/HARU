@@ -19,17 +19,22 @@ public interface UserDataDao {
     List<UserData> getAllUserData();
 
     @Query("SELECT * FROM userdata " +
-            "WHERE level = :level" +
+            "WHERE level LIKE :level" +
             " and chatper = :chapter")
-    UserData getChapterData(int level, int chapter);
+    UserData getChapterData(String level, int chapter);
 
     @Query("SELECT * FROM userdata " +
-            "WHERE level = :level")
-    List<UserData> getDatasEachLevel(int level);
+            "WHERE level LIKE :level")
+    List<UserData> getDatasEachLevel(String level);
 
     @Query("UPDATE userdata " +
             "SET studied_count = :studiedCount," +
             "count = :count " +
-            "WHERE level = :level and chatper = :chapter")
-    void updateUserDate(int count, int studiedCount, int level, int chapter);
+            "WHERE level LIKE :level and chatper = :chapter")
+    void updateUserDate(int count, int studiedCount, String level, int chapter);
+
+    @Query("UPDATE userdata " +
+            "SET studied_count = studied_count + :studiedCount " +
+            "WHERE level LIKE :level and chatper = :chapter")
+    void updateChapterTestData(String level, int chapter,int studiedCount);
 }

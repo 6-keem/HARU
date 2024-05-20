@@ -30,14 +30,16 @@ public class StudyTestActivity extends StudyActivity {
         for (int i = 0 ; i < arrayList.size() ; i ++){
             CardFragment cardFragment = arrayList.get(i);
             cardFragment.setCustomOnClickListener(view -> {
-                viewPager.setCurrentItem(++currentPage, true);
-                progressBar.setProgress(currentPage);
-                currentCount.setText(Integer.toString(currentPage));
-                if(currentPage == wordEnd){
+                if(currentPage == wordEnd-1){
                     // TODO: 2024-05-18 팝업 띄우고 종료하기
                     chronometer.stop();
-                    onExit(1);
+                    //onExit(1);
                     finish();
+                }
+                else {
+                    viewPager.setCurrentItem(++currentPage, true);
+                    progressBar.setProgress(currentPage+1);
+                    currentCount.setText(Integer.toString(currentPage+1));
                 }
             });
         }
@@ -46,7 +48,7 @@ public class StudyTestActivity extends StudyActivity {
     @Override
     protected void onExit(int factor){
         UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
-        userDataDao.updateUserDate(retryCount + factor, currentPage - 1, level, position);
+        userDataDao.updateUserDate(retryCount + factor, currentPage, Integer.toString(level), position);
     }
 
     @Override

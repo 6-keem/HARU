@@ -68,8 +68,8 @@ public class TestCardFragment extends CardFragment {
         List<Word> problems = wordDao.getWordForKanjiProblem(meaning,3);
         answer = transferKanji(cardData.getJapanese());
         problemArrayList.add(answer);
-        for(int i = 0 ; i < problems.size() ; i ++){
-            if(problems.get(i).getKanji() != null)
+        for(int i = 0 ; i < problems.size() ; i ++) {
+            if (problems.get(i).getKanji() != null)
                 problemArrayList.add(transferKanji(problems.get(i).getKanji()));
             else
                 problemArrayList.add(problems.get(i).getFurigana());
@@ -122,6 +122,7 @@ public class TestCardFragment extends CardFragment {
             buttonArrayList.add(button);
             button.setOnClickListener(v -> {
                 setCheckIsCorrect(button);
+                customCheckButtonOnClickListener.onClick(v);
                 new Handler().postDelayed(() -> {
                     if(v != null)
                         customOnClickListener.onClick(v);
@@ -132,10 +133,12 @@ public class TestCardFragment extends CardFragment {
 
     private void setCheckIsCorrect(Button button) {
         try{
+            button.setOnClickListener(null);
             if(answer.equals(button.getText().toString()))
                 button.setBackground(getContext().getDrawable(R.drawable.style_card_correct));
             else {
                 for(Button btn : buttonArrayList){
+                    btn.setOnClickListener(null);
                     if(answer.equals(btn.getText().toString())){
                         btn.setBackground(getContext().getDrawable(R.drawable.style_card_correct));
                         btn.setTextColor(Color.WHITE);

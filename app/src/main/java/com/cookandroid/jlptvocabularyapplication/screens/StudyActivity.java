@@ -16,6 +16,8 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
+import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.CardPagerAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.MyTextToSpeech;
@@ -29,7 +31,7 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected CardPagerAdapter cardPagerAdapter = null;
     protected ViewPager2 viewPager = null;
     protected ProgressBar progressBar = null;
-    protected int level, position, wordEnd, retryCount, currentPage = 1;
+    protected int level, position, wordEnd, retryCount, currentPage = 0;
     protected TextView currentCount = null;
     protected Chronometer chronometer = null;
     abstract protected void setCardItem();
@@ -69,12 +71,12 @@ public abstract class StudyActivity extends AppCompatActivity {
     private void setWidgets() {
         // TODO: 2024-05-17 DB 정보 가져와서 초기화
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        progressBar.setProgress(currentPage);
+        progressBar.setProgress(currentPage+1);
         progressBar.setMax(wordEnd);
 
         currentCount = (TextView) findViewById(R.id.count);
         TextView total = (TextView)findViewById(R.id.total_count);
-        currentCount.setText(Integer.toString(currentPage));
+        currentCount.setText(Integer.toString(currentPage+1));
         total.setText("/" + wordEnd);
 
         chronometer = (Chronometer) findViewById(R.id.chronometer);
@@ -88,7 +90,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         ImageButton imageButton = (ImageButton) findViewById(R.id.back_arrow);
         toolbarTitle.setText("N" + level + " UNIT " + position);
         imageButton.setOnClickListener(v -> {
-           finish();
+            finish();
         });
         setSupportActionBar(toolbar);
     }

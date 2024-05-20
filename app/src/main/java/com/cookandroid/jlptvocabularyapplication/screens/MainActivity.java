@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
     ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
     ArrayList<NormalCardFragment> arrayList = new ArrayList<>();
-    int count = 0;
+    int current = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragment_layout, fragmentArrayList.get(0));
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        fragmentArrayList.get(current).onResume();
     }
 
     ArrayList<String> setLevelItem(){
@@ -65,26 +71,17 @@ public class MainActivity extends AppCompatActivity {
             userDataDao.insertUserData(new UserData(0,0, 0));
             for(int i = 1 ; i < 6 ; i ++){
                 int total = wordDao.getWordsCount(Integer.toString(i),0);
-                if(total <= 1200){
-                    int iterationMax = total / 150;
-                    UserData userData = new UserData(i, 0, total);
-                    userData.chapterCount = iterationMax;
-                    userDataDao.insertUserData(userData);
-                    for(int j = 1 ; j < iterationMax ; j ++)
-                        userDataDao.insertUserData(new UserData(i,j,150));
-                    userDataDao.insertUserData(new UserData(i, iterationMax, total % 150));
-                } else {
-                    int factor = (total / 8) + 1;
-                    UserData userData = new UserData(i, 0, total);
-                    userData.chapterCount = 8;
-                    userDataDao.insertUserData(userData);
-                    for(int j = 1 ; j < 8 ; j ++)
-                        userDataDao.insertUserData(new UserData(i,j,factor));
-                    userDataDao.insertUserData(new UserData(i,8,total % factor));
-                }
+                int factor = (total / 8) + 1;
+                UserData userData = new UserData(i, 0, total);
+                userData.chapterCount = 8;
+                userDataDao.insertUserData(userData);
+                for(int j = 1 ; j < 8 ; j ++)
+                    userDataDao.insertUserData(new UserData(i,j,factor));
+                userDataDao.insertUserData(new UserData(i,8,total % factor));
             }
         }
     }
+
 
     private void setChapterFragments(){
         fragmentArrayList.add(new ChapterFragment(getApplicationContext(),0));
@@ -96,26 +93,32 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (level){
             case 0:
+                current = 0;
                 fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(0));
                 fragmentTransaction.commit();
                 break;
             case 1:
+                current = 1;
                 fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(1));
                 fragmentTransaction.commit();
                 break;
             case 2:
+                current = 2;
                 fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(2));
                 fragmentTransaction.commit();
                 break;
             case 3:
+                current = 3;
                 fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(3));
                 fragmentTransaction.commit();
                 break;
             case 4:
+                current = 4;
                 fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(4));
                 fragmentTransaction.commit();
                 break;
             case 5:
+                current = 5;
                 fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(5));
                 fragmentTransaction.commit();
                 break;

@@ -27,7 +27,8 @@ import java.util.List;
 
 public class ChapterFragment extends Fragment {
     private int level;
-    private ArrayList<ChapterData> chapterDataArrayList = new ArrayList<>();
+    private ArrayList<ChapterData> chapterDataArrayList = null;
+    private ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = null;
     private int[] styles = {R.drawable.chapter_shadow_test, R.drawable.chapter_shadow_level_1, R.drawable.chapter_shadow_level_2,
             R.drawable.chapter_shadow_level_3, R.drawable.chapter_shadow_level_4,R.drawable.chapter_shadow_level_5,
             R.drawable.chapter_shadow_level_6,R.drawable.chapter_shadow_level_7, R.drawable.chapter_shadow_level_7 };
@@ -36,36 +37,48 @@ public class ChapterFragment extends Fragment {
             R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
             R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
 
+    private String[] title = {"JLPT " + level, "UNIT"};
     public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level) {
         this.level = level;
         setWordCount(context);
-        // TODO: 2024-05-14 쿼리로 진행도 가져오기
+        setChapterFragmentItem(context);
+    }
+
+    private void setChapterFragmentItem(Context context) {
+        chapterDataArrayList = new ArrayList<>();
         try {
             UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
-            UserData data = userDataDao.getChapterData(level, 0);
-            if(level == 0){
+            UserData data = userDataDao.getChapterData(Integer.toString(level), 0);
+            if(level == 0)
                 chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[0]),
-                        icon[0], "JLPT ALL", "", userDataDao.getChapterData(level, 0)));
-            }
+                        icon[0], "JLPT ALL", "", userDataDao.getChapterData(Integer.toString(level), 0)));
             else {
                 int total = data.chapterCount;
                 for(int i = 0; i <= total ; i ++){
                     if(i == 0) {
                         chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
-                                icon[i], ("JLPT " + level), "", data));
+                                icon[i], title[0], "", data));
                     } else {
                         chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
-                                icon[i], ("UNIT " + i), "", userDataDao.getChapterData(level, i)));
+                                icon[i], title[1] + i, "", userDataDao.getChapterData(Integer.toString(level), i)));
                     }
                 }
             }
         } catch (NullPointerException e){ }
     }
+
     private List<UserData> setWordCount(Context context){
         UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
-        return userDataDao.getDatasEachLevel(level);
+        return userDataDao.getDatasEachLevel(Integer.toString(level));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setChapterFragmentItem(getContext());
+        chapterRecyclerViewAdapter.update(chapterDataArrayList);
     }
 
     @Override
@@ -85,10 +98,11 @@ public class ChapterFragment extends Fragment {
         View view = inflater.inflate(R.layout.chapter_recyclerview, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chapter_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = new ChapterRecyclerViewAdapter(chapterDataArrayList);
+        chapterRecyclerViewAdapter = new ChapterRecyclerViewAdapter(chapterDataArrayList);
         recyclerView.setAdapter(chapterRecyclerViewAdapter);
 
         chapterRecyclerViewAdapter.setOnItemClickListener((v, position) -> {
+            onStop();
             Intent intent;
             if(position == 0)
                 intent = new Intent(getActivity(), StudyTestActivity.class).setAction("Study_Test");

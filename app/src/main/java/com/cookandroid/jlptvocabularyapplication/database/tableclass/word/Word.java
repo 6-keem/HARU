@@ -42,6 +42,17 @@ public class Word implements Serializable {
     @ColumnInfo(name = "level")
     @SerializedName("level")     public int level;
 
+    @ColumnInfo(name = "bookmark", defaultValue = "false")
+    @SerializedName("bookmark") public boolean bookmark;
+
+    public boolean isBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        this.bookmark = bookmark;
+    }
+
     public int getLevel() {
         return level;
     }

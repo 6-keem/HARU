@@ -22,7 +22,7 @@ public interface WordDao {
 
     // kanji가 없는경우 furigana로 표시
     @Query("SELECT * FROM word " +
-            "WHERE word_meaning != :meaning " +
+            "WHERE word_meaning != :meaning and length(kanji) != 0 " +
             "ORDER BY RANDOM() LIMIT :limit")
     List<Word> getWordForKanjiProblem(String meaning, int limit);
 
@@ -51,4 +51,9 @@ public interface WordDao {
 
     @Query("SELECT count(*) FROM word WHERE level LIKE :level and star_count > :star_count")
     int getWordsCount(String level, int star_count );
+
+    @Query("UPDATE word " +
+            "SET bookmark = :status " +
+            "WHERE word_id = :wordID")
+    void updateBookmark(long wordID, boolean status);
 }

@@ -2,6 +2,7 @@ package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,13 +19,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.cookandroid.jlptvocabularyapplication.R;
+import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressLint("SetTextI18n")
 public class NormalCardFragment extends CardFragment {
     private LinearLayout front, back;
     public NormalCardFragment(){}
@@ -54,12 +58,18 @@ public class NormalCardFragment extends CardFragment {
         String japanese = cardData.getJapanese();
         textView.setText(japanese);
         skipButton.setOnClickListener(v -> {
-            if(v != null)
+            if(v != null) {
                 customOnClickListener.onClick(v);
+                skipButton.setOnClickListener(null);
+            }
         });
 
         checkButton.setOnClickListener(v -> {
             if(v != null) {
+                new Thread(() -> {
+                    customCheckButtonOnClickListener.onClick(v);
+                }).start();
+
                 float scale = getContext().getResources().getDisplayMetrics().density;
                 front.setCameraDistance(scale * 8000);
                 back.setCameraDistance(scale * 8000);
@@ -78,6 +88,7 @@ public class NormalCardFragment extends CardFragment {
 
     private void setBackCard(View view){
         back = (LinearLayout) view.findViewById(R.id.card_back);
+        Button checkButton = (Button) view.findViewById(R.id.check);
         Button skipButton = (Button) view.findViewById(R.id.skip_back);
         TextView meaning = (TextView) view.findViewById(R.id.meaning);
         TextView sentence = (TextView) view.findViewById(R.id.sentence);
@@ -87,6 +98,9 @@ public class NormalCardFragment extends CardFragment {
         TextView sentenceMeaning = (TextView) view.findViewById(R.id.sentence_meaning);
         ImageButton ttsButton = (ImageButton) view.findViewById(R.id.tts_button);
         ImageButton naverButton = (ImageButton) view.findViewById(R.id.naver);
+        ImageButton bookmarkButton = (ImageButton) view.findViewById(R.id.bookmark);
+        setBookmarkButtonImage(bookmarkButton);
+
 
         wordClass.setText(cardData.getWordClass());
         if(cardData.getKanji() == null)
@@ -112,21 +126,37 @@ public class NormalCardFragment extends CardFragment {
             if(v != null)
                 customOnClickListener.onClick(v);
         });
+
+        bookmarkButton.setOnClickListener(v-> {
+            boolean isBookmarked = cardData.isBookmarked();
+            setBookmarkButtonImage(bookmarkButton);
+            WordDao wordDao = WordsDatabase.getInstance(getContext()).wordDao();
+            wordDao.updateBookmark(cardData.getWordID(), isBookmarked);
+        });
+
         naverButton.setOnClickListener(v -> {
             String link = "https://ja.dict.naver.com/#/entry/jako/" + cardData.getLink();
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             intent.putExtra(Browser.EXTRA_APPLICATION_ID, getContext().getPackageName());
             startActivity(intent);
         });
+
         ttsButton.setOnClickListener(v -> {
             MyTextToSpeech.getInstance(getContext())
                     .speak(cardData.getFurigana(),TextToSpeech.QUEUE_ADD,null,null);
         });
     }
 
-    public void setCustomOnClickListener(CustomOnClickListener listener){
-        this.customOnClickListener = listener;
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void setBookmarkButtonImage(ImageButton bookmarkButton) {
+        boolean isBookmarked = cardData.isBookmarked();
+        if(isBookmarked)
+            bookmarkButton.setImageDrawable(getContext().getDrawable(R.drawable.bookmarked));
+        else
+            bookmarkButton.setImageDrawable(getContext().getDrawable(R.drawable.bookmark));
+        cardData.setBookmarked(!isBookmarked);
     }
+
 
     @Override
     public void onDestroyView() {

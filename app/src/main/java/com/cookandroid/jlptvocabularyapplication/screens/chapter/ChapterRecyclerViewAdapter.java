@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,6 +25,11 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         notifyDataSetChanged();
     }
 
+    public void update(ArrayList<ChapterData> chapterDataArrayList){
+        chapterData.clear();
+        chapterData.addAll(chapterDataArrayList);
+        notifyDataSetChanged();
+    }
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
@@ -45,6 +48,7 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         holder.onBind(chapterData.get(position));
     }
 
+
     @Override
     public int getItemCount() {
         return chapterData.size();
@@ -57,7 +61,6 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         ImageView imageView;
         public ChapterViewHolder(@NonNull View itemView) {
             super(itemView);
-
             chapterTitle = (TextView) itemView.findViewById(R.id.chapter_title);
 //            description = (TextView) itemView.findViewById(R.id.de)
             constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.parent_layout);
@@ -76,8 +79,8 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         }
         public void onBind(ChapterData chapterData){
             chapterTitle.setText(chapterData.getTitle());
-            progressBar.setProgress(chapterData.getStudiedCount());
             progressBar.setMax(chapterData.getTotal());
+            progressBar.setProgress(chapterData.getStudiedCount());
             constraintLayout.setBackground(chapterData.getBackground());
             imageView.setImageResource(chapterData.getImageID());
         }

@@ -13,6 +13,7 @@ import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.CardDa
 
 public abstract class CardFragment extends Fragment {
     protected CustomOnClickListener customOnClickListener = null;
+    protected CustomCheckButtonOnClickListener customCheckButtonOnClickListener = null;
     protected CardData cardData = null;
     protected CardFragment(){}
     protected CardFragment(Word word){
@@ -29,8 +30,16 @@ public abstract class CardFragment extends Fragment {
         void onClick(View view);
     }
 
+    public interface CustomCheckButtonOnClickListener{
+        void onClick(View view);
+    }
+
     public void setCustomOnClickListener(CustomOnClickListener listener){
         this.customOnClickListener = listener;
+    }
+
+    public void setCustomCheckButtonOnClickListener(CustomCheckButtonOnClickListener listener){
+        this.customCheckButtonOnClickListener = listener;
     }
 
     @Override
