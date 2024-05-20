@@ -27,19 +27,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".screens.StudyNormalActivity"
+            android:name=".screens.studyactivity.StudyNormalActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".screens.StudyTestActivity"
+            android:name=".screens.studyactivity.StudyTestActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".screens.MainActivity"
+            android:name=".screens.mainactivty.MainActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".screens.SplashActivity"
+            android:name=".screens.splashactivity.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Splash">
             <intent-filter>

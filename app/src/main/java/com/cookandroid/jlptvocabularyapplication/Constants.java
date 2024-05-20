@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 // TODO: 2024-05-20 북마크 구현, 팝업 창 구현 (시험 결과, 학습 결과)
 // TODO: 2024-05-21 옵션창 구현 통계 구현
+
+// finish
 public class Constants {
     public static final HashMap<String, String> cityNameConvertor = new HashMap<String, String>(){{
         put("서울특별시","Seoul");

@@ -9,7 +9,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cookandroid.jlptvocabularyapplication.screens.MainActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.mainactivty.MainActivity;
 import com.cookandroid.jlptvocabularyapplication.R;
 
 import java.util.ArrayList;

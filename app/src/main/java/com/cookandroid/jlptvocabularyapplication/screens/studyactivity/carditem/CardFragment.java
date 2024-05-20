@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
-import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.CardData;
 
 public abstract class CardFragment extends Fragment {
     protected CustomOnClickListener customOnClickListener = null;

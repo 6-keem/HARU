@@ -26,7 +26,7 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
     }
 
     public void update(ArrayList<ChapterData> chapterDataArrayList){
-        chapterData.clear();
+        chapterData = new ArrayList<>();
         chapterData.addAll(chapterDataArrayList);
         notifyDataSetChanged();
     }

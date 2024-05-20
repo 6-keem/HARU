@@ -1,10 +1,13 @@
-package com.cookandroid.jlptvocabularyapplication.screens;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -16,11 +19,10 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
-import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
-import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.CardPagerAdapter;
-import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.MyTextToSpeech;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.CustomExitDialog;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardPagerAdapter;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.MyTextToSpeech;
 
 import java.util.ArrayList;
 
@@ -32,16 +34,26 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected ViewPager2 viewPager = null;
     protected ProgressBar progressBar = null;
     protected int level, position, wordEnd, retryCount, currentPage = 0;
+
+    protected int checkCount = 0;
     protected TextView currentCount = null;
     protected Chronometer chronometer = null;
     abstract protected void setCardItem();
     abstract protected void onExit(int factor);
     abstract protected void setScrollEvent();
+
+    private CustomExitDialog customExitDialog;
+
+    private View.OnClickListener mConfirmListener = view -> finish();
+
+    private View.OnClickListener mCancelListener = view -> customExitDialog.dismiss();
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.study);
+        customExitDialog = new CustomExitDialog(StudyActivity.this, mCancelListener, mConfirmListener);
 
         MyTextToSpeech.getInstance(getApplicationContext());
         Intent intent = getIntent();
@@ -90,11 +102,10 @@ public abstract class StudyActivity extends AppCompatActivity {
         ImageButton imageButton = (ImageButton) findViewById(R.id.back_arrow);
         toolbarTitle.setText("N" + level + " UNIT " + position);
         imageButton.setOnClickListener(v -> {
-            finish();
+            customExitDialog.show();
         });
         setSupportActionBar(toolbar);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -102,5 +113,8 @@ public abstract class StudyActivity extends AppCompatActivity {
         viewPager.setAdapter(null);
         arrayList = null;
         cardPagerAdapter = null;
+        if(customExitDialog != null && customExitDialog.isShowing())
+            customExitDialog.dismiss();
+        mCancelListener = mConfirmListener = null;
     }
 }

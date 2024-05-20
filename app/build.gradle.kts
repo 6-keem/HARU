@@ -62,12 +62,12 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     //for json parsing
-    implementation ("com.google.code.gson:gson:2.9.0")
+    implementation ("com.google.code.gson:gson:2.10.1")
 
     //for api
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.retrofit2:converter-scalars:2.11.0")
 
     //for gps
     implementation ("com.google.android.gms:play-services-location:21.0.1")
@@ -81,4 +81,6 @@ dependencies {
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
 
+    //for chart
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

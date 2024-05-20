@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity;
 
 import android.annotation.SuppressLint;
 
@@ -6,8 +6,8 @@ import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
-import com.cookandroid.jlptvocabularyapplication.screens.study.testcard.TestCardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.TestCardFragment;
 
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class StudyTestActivity extends StudyActivity {
             CardFragment cardFragment = arrayList.get(i);
             cardFragment.setCustomOnClickListener(view -> {
                 if(currentPage == wordEnd-1){
-                    // TODO: 2024-05-18 팝업 띄우고 종료하기
                     chronometer.stop();
+                    // TODO: 2024-05-20 테스트 종료 후 결과 저장하기 위함 
                     //onExit(1);
                     finish();
                 }
@@ -41,6 +41,9 @@ public class StudyTestActivity extends StudyActivity {
                     progressBar.setProgress(currentPage+1);
                     currentCount.setText(Integer.toString(currentPage+1));
                 }
+            });
+            cardFragment.setCustomCheckButtonOnClickListener(view -> {
+                checkCount++;
             });
         }
     }

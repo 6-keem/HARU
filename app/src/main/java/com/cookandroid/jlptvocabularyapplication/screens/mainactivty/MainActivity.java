@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens;
+package com.cookandroid.jlptvocabularyapplication.screens.mainactivty;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -15,7 +15,7 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.Us
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
-import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.NormalCardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.NormalCardFragment;
 
 import java.util.ArrayList;
 import java.util.List;

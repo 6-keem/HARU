@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity;
 
 import android.annotation.SuppressLint;
 import android.widget.TextView;
@@ -10,8 +10,8 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.Us
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
-import com.cookandroid.jlptvocabularyapplication.screens.study.normalcard.NormalCardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.NormalCardFragment;
 
 import java.util.List;
 

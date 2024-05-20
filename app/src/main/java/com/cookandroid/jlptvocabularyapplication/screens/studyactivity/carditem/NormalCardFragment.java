@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -23,7 +23,6 @@ import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,9 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 
 import java.util.ArrayList;
 

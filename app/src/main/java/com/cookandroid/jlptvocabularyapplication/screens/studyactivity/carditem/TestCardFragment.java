@@ -1,8 +1,6 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study.testcard;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -13,12 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.cookandroid.jlptvocabularyapplication.Constants;
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
-import com.cookandroid.jlptvocabularyapplication.screens.study.CardFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,10 +22,10 @@ import java.util.List;
 
 public class TestCardFragment extends CardFragment {
 
-    private WordDao wordDao = WordsDatabase.getInstance(getContext()).wordDao();
-    private ArrayList<String> problemArrayList = new ArrayList<>();
-    private int [] answerIDs = {R.id.answer1,R.id.answer2,R.id.answer3,R.id.answer4};
     private ArrayList<Button> buttonArrayList = new ArrayList<>();
+    private ArrayList<String> problemArrayList = new ArrayList<>();
+    private WordDao wordDao = WordsDatabase.getInstance(getContext()).wordDao();
+    private int [] answerIDs = {R.id.answer1,R.id.answer2,R.id.answer3,R.id.answer4};
     private String answer;
     public TestCardFragment(){}
     public TestCardFragment(Word word){ super(word); }

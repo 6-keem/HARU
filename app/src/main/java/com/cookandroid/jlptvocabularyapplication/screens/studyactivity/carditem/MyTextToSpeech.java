@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;

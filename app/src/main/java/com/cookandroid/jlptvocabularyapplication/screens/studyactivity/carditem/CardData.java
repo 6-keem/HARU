@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.study.normalcard;
+package com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem;
 
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Sentence;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;

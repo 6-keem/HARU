@@ -19,8 +19,8 @@ import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
-import com.cookandroid.jlptvocabularyapplication.screens.StudyNormalActivity;
-import com.cookandroid.jlptvocabularyapplication.screens.StudyTestActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.StudyNormalActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.StudyTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
