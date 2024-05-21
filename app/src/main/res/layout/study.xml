@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/study_toolbar"/>
+        layout="@layout/toolbar"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="356dp"

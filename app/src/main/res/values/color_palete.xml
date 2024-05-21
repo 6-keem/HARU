@@ -12,4 +12,11 @@
     <color name="unit_6_color">#F8D49A</color>
     <color name="unit_7_color">#F5E6C9</color>
     <color name="graph_color_coral_blue">#62B2FD</color>
+    
+    
+    <color name="graph_color_level_5">#9F97F7</color>
+    <color name="graph_color_level_4">#FFB44F</color>
+    <color name="graph_color_level_3">#F99BAB</color>
+    <color name="graph_color_level_2">#9BDFC4</color>
+    <color name="graph_color_level_1">#62B2FD</color>
 </resources>

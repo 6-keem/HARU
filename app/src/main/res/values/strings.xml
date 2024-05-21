@@ -2,4 +2,8 @@
     <string name="app_name">AndroidFinalTermProject</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="dropdwon_analytics">
+        <item>Study Time</item>
+        <item>정답률</item>
+    </string-array>
 </resources>

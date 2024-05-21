@@ -33,7 +33,6 @@ public class WeatherAPI {
 
         Retrofit retrofit = RetrofitManager.getInstance(baseURL);
         WeatherService service = retrofit.create(WeatherService.class);
-        // TODO: 2024-05-03 app key 제거 
         service.getData(lat, lon, BuildConfig.weather_api_key).enqueue(new Callback<WeatherRoot>() {
             @Override
             public void onResponse(Call<WeatherRoot> call, Response<WeatherRoot> response) {

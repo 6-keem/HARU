@@ -14,6 +14,7 @@ import com.cookandroid.jlptvocabularyapplication.screens.mainactivty.MainActivit
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.importdatabase.InsertTableHandler;
 import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;
+import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
@@ -41,7 +42,10 @@ public class SplashActivity extends Activity {
             getPermission();
             LocationCoord.getInstance(fusedLocationProviderClient).getWeather();
             new Handler().postDelayed(()-> {
-                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
+//                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
+//                startActivity(intent);
+//                finish();
+                Intent intent = new Intent(getBaseContext(), SettingActivity.class).setAction("Splash Activity");
                 startActivity(intent);
                 finish();
             }, 3000 - (delay/2));
