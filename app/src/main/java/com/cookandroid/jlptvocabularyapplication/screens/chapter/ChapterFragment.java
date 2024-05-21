@@ -37,7 +37,7 @@ public class ChapterFragment extends Fragment {
             R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
             R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
 
-    private String[] title = {"JLPT " + level, "UNIT"};
+    private String[] title = {"JLPT N", "UNIT"};
     public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level) {
@@ -59,7 +59,7 @@ public class ChapterFragment extends Fragment {
                 for(int i = 0; i <= total ; i ++){
                     if(i == 0) {
                         chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
-                                icon[i], title[0], "", data));
+                                icon[i], title[0] + level + " 단어 시험", "", data));
                     } else {
                         chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
                                 icon[i], title[1] + i, "", userDataDao.getChapterData(Integer.toString(level), i)));

@@ -10,6 +10,8 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.Us
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.StudyPieChart;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.TestPieChart;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.NormalCardFragment;
 
@@ -40,31 +42,32 @@ public class StudyNormalActivity extends StudyActivity {
     }
 
     @Override
-    protected void setScrollEvent() {
+    protected void setPageScrollEvent() {
         for (int i = 0 ; i < arrayList.size() ; i ++){
             CardFragment cardFragment = arrayList.get(i);
-            cardFragment.setCustomOnClickListener(view -> {
-                if(currentPage == wordEnd - 1){
-                    // TODO: 2024-05-18 팝업 띄우고 종료하기
-                    chronometer.stop();
-                    onExit(1);
-                    finish();
-                }
-                else {
-                    viewPager.setCurrentItem(++currentPage, true);
-                    progressBar.setProgress(currentPage + 1);
-                    currentCount.setText(Integer.toString(currentPage + 1));
-                }
-            });
-            cardFragment.setCustomCheckButtonOnClickListener(view -> {
-                checkCount++;
-            });
+            cardFragment.setCustomOnClickListener(view -> toNextPage());
+            cardFragment.setCustomCheckButtonOnClickListener( view -> checkCount++ );
+        }
+    }
+
+    private void toNextPage() {
+        if(currentPage == wordEnd - 1){
+            // TODO: 2024-05-18 팝업 띄우고 종료하기
+            chronometer.stop();
+            onExit(1);
+            pieChartDialog = new StudyPieChart(StudyNormalActivity.this, checkCount,
+                    wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
+            pieChartDialog.show();
+        }
+        else {
+            viewPager.setCurrentItem(++currentPage, true);
+            progressBar.setProgress(currentPage + 1);
+            currentCount.setText(Integer.toString(currentPage + 1));
         }
     }
 
     @Override
     protected void onExit(int factor){
-//        void updateUserDate(int count, int studiedCount, String level, int chapter);
         UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
         UserData userData = userDataDao.getChapterData(Integer.toString(level), position);
         int studiedCount = currentPage - userData.getStudiedCount();

@@ -17,7 +17,7 @@ public interface WordDao {
     @Query("SELECT * FROM word")
     LiveData<List<Word>> getAllWords();
 
-    @Query("SELECT * FROM word WHERE level like :level ORDER BY RANDOM() LIMIT 20")
+    @Query("SELECT * FROM word WHERE level like :level ORDER BY RANDOM() LIMIT 30")
     List<Word> getWordForTest(String level);
 
     // kanji가 없는경우 furigana로 표시

@@ -1,13 +1,10 @@
 package com.cookandroid.jlptvocabularyapplication.screens.studyactivity;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -20,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.CustomExitDialog;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.PieChartDialog;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardPagerAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.MyTextToSpeech;
@@ -34,19 +32,17 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected ViewPager2 viewPager = null;
     protected ProgressBar progressBar = null;
     protected int level, position, wordEnd, retryCount, currentPage = 0;
-
     protected int checkCount = 0;
     protected TextView currentCount = null;
     protected Chronometer chronometer = null;
     abstract protected void setCardItem();
     abstract protected void onExit(int factor);
-    abstract protected void setScrollEvent();
-
+    abstract protected void setPageScrollEvent();
     private CustomExitDialog customExitDialog;
-
+    protected PieChartDialog pieChartDialog;
     private View.OnClickListener mConfirmListener = view -> finish();
-
     private View.OnClickListener mCancelListener = view -> customExitDialog.dismiss();
+    protected View.OnClickListener dialogConfrimListener = view -> finish();
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -77,7 +73,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         });
         setToolBar();
         setWidgets();
-        setScrollEvent();
+        setPageScrollEvent();
     }
 
     private void setWidgets() {
@@ -100,7 +96,8 @@ public abstract class StudyActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         TextView toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
         ImageButton imageButton = (ImageButton) findViewById(R.id.back_arrow);
-        toolbarTitle.setText("N" + level + " UNIT " + position);
+        String title = position != 0 ? ("N" + level + " UNIT " + position) : ("N" + level + " TEST");
+        toolbarTitle.setText(title);
         imageButton.setOnClickListener(v -> {
             customExitDialog.show();
         });
@@ -115,6 +112,8 @@ public abstract class StudyActivity extends AppCompatActivity {
         cardPagerAdapter = null;
         if(customExitDialog != null && customExitDialog.isShowing())
             customExitDialog.dismiss();
-        mCancelListener = mConfirmListener = null;
+        if(pieChartDialog != null && pieChartDialog.isShowing())
+            pieChartDialog.dismiss();
+        dialogConfrimListener = mCancelListener = mConfirmListener = null;
     }
 }

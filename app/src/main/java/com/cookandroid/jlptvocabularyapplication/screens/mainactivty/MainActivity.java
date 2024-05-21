@@ -23,7 +23,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
     ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
-    ArrayList<NormalCardFragment> arrayList = new ArrayList<>();
     int current = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,37 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeFragment(int level){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        switch (level){
-            case 0:
-                current = 0;
-                fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(0));
-                fragmentTransaction.commit();
-                break;
-            case 1:
-                current = 1;
-                fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(1));
-                fragmentTransaction.commit();
-                break;
-            case 2:
-                current = 2;
-                fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(2));
-                fragmentTransaction.commit();
-                break;
-            case 3:
-                current = 3;
-                fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(3));
-                fragmentTransaction.commit();
-                break;
-            case 4:
-                current = 4;
-                fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(4));
-                fragmentTransaction.commit();
-                break;
-            case 5:
-                current = 5;
-                fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(5));
-                fragmentTransaction.commit();
-                break;
-        }
+        current = level;
+        fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(level));
+        fragmentTransaction.commit();
     }
 }

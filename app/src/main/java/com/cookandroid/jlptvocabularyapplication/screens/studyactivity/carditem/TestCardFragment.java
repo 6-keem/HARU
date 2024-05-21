@@ -117,8 +117,8 @@ public class TestCardFragment extends CardFragment {
             button.setText(problemArrayList.get(i));
             buttonArrayList.add(button);
             button.setOnClickListener(v -> {
-                setCheckIsCorrect(button);
-                customCheckButtonOnClickListener.onClick(v);
+                if(setCheckIsCorrect(button))
+                    customCheckButtonOnClickListener.onClick(v);
                 new Handler().postDelayed(() -> {
                     if(v != null)
                         customOnClickListener.onClick(v);
@@ -127,12 +127,14 @@ public class TestCardFragment extends CardFragment {
         }
     }
 
-    private void setCheckIsCorrect(Button button) {
+    private boolean setCheckIsCorrect(Button button) {
+        boolean flag = true;
         try{
             button.setOnClickListener(null);
             if(answer.equals(button.getText().toString()))
                 button.setBackground(getContext().getDrawable(R.drawable.style_card_correct));
             else {
+                flag = false;
                 for(Button btn : buttonArrayList){
                     btn.setOnClickListener(null);
                     if(answer.equals(btn.getText().toString())){
@@ -144,6 +146,7 @@ public class TestCardFragment extends CardFragment {
             }
             button.setTextColor(Color.WHITE);
         } catch (NullPointerException ignore){ }
+        return flag;
     }
 
     private String transferMeaning(List<String> meanings){
