@@ -16,5 +16,5 @@ public interface StudyDataDao {
 
     @Transaction
     @Query("SELECT * FROM studydata")
-    List<UserData> getAllStudyData();
+    List<StudyData> getAllStudyData();
 }

@@ -16,6 +16,9 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
+import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.studydata.StudyData;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.studydata.StudyDataDao;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.CustomExitDialog;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.PieChartDialog;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.StudyPieChart;
@@ -89,7 +92,7 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected void toNextPage() {
         if(currentPage == wordEnd - 1){
             chronometer.stop();
-            onExit(1);
+            saveStudyData(1);
             pieChartDialog = new StudyPieChart(StudyActivity.this, wordEnd-checkCount,
                     wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
             pieChartDialog.show();
@@ -130,6 +133,25 @@ public abstract class StudyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    protected void saveStudyData(int factor){
+        StudyDataDao studyDataDao = WordsDatabase.getInstance(getApplicationContext()).studyDataDao();
+
+        String option = "";
+        if(this instanceof StudyNormalActivity)
+            option = "NORMAL";
+        else if(this instanceof  StudyTestActivity)
+            option = "TEST";
+        else
+            option = "BOOKMARK";
+        long date = System.currentTimeMillis();
+        // TODO: 2024-05-22 chronometer to long으로 DB에 저장
+
+        int elaspsed = (int)(SystemClock.elapsedRealtime() - chronometer.getBase());
+
+        StudyData studyData = new StudyData(option, elaspsed, date, level, position, checkCount, wordEnd);
+        studyDataDao.insertStudyData(studyData);
+        onExit(factor);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

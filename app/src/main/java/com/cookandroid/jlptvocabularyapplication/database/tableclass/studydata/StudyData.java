@@ -10,6 +10,16 @@ import java.util.Date;
 @Entity(tableName = "studydata")
 public class StudyData implements Serializable {
 
+    public StudyData(String option, long time, long date, int level, int chapter, int wrong, int total){
+        this.option = option;
+        this.date = date;
+        this.time = time;
+        this.level = level;
+        this.chapter = chapter;
+        this.wrong = wrong;
+        this.total = total;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     public int id;
@@ -19,6 +29,9 @@ public class StudyData implements Serializable {
 
     @ColumnInfo(name = "date")
     public long date;
+
+    @ColumnInfo(name = "time")
+    public long time;
 
     // JLPT Level
     @ColumnInfo(name = "level")
