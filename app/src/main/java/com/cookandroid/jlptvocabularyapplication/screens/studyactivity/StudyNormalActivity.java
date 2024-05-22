@@ -42,31 +42,6 @@ public class StudyNormalActivity extends StudyActivity {
     }
 
     @Override
-    protected void setPageScrollEvent() {
-        for (int i = 0 ; i < arrayList.size() ; i ++){
-            CardFragment cardFragment = arrayList.get(i);
-            cardFragment.setCustomOnClickListener(view -> toNextPage());
-            cardFragment.setCustomCheckButtonOnClickListener( view -> checkCount++ );
-        }
-    }
-
-    private void toNextPage() {
-        if(currentPage == wordEnd - 1){
-            // TODO: 2024-05-18 팝업 띄우고 종료하기
-            chronometer.stop();
-            onExit(1);
-            pieChartDialog = new StudyPieChart(StudyNormalActivity.this, checkCount,
-                    wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
-            pieChartDialog.show();
-        }
-        else {
-            viewPager.setCurrentItem(++currentPage, true);
-            progressBar.setProgress(currentPage + 1);
-            currentCount.setText(Integer.toString(currentPage + 1));
-        }
-    }
-
-    @Override
     protected String setToolbarTitle() {
         return ("N" + level + " UNIT " + position);
     }
@@ -77,8 +52,10 @@ public class StudyNormalActivity extends StudyActivity {
         UserData userData = userDataDao.getChapterData(Integer.toString(level), position);
         int studiedCount = currentPage - userData.getStudiedCount();
         userDataDao.updateUserDate(retryCount + factor, (currentPage + 1), Integer.toString(level), position);
-        if(studiedCount > 0)
+        if(studiedCount > 0){
             userDataDao.updateChapterTestData(Integer.toString(level), 0, (studiedCount + 1));
+            userDataDao.updateChapterTestData(Integer.toString(0),0, (studiedCount)+1);
+        }
     }
 
     @Override

@@ -48,30 +48,6 @@ public class StudyBookmarkActivity extends StudyActivity {
     }
 
     @Override
-    protected void setPageScrollEvent() {
-        for (int i = 0 ; i < arrayList.size() ; i ++){
-            CardFragment cardFragment = arrayList.get(i);
-            cardFragment.setCustomOnClickListener(view -> toNextPage());
-            cardFragment.setCustomCheckButtonOnClickListener( view -> checkCount++ );
-        }
-    }
-
-    private void toNextPage() {
-        if(currentPage == wordEnd - 1){
-            chronometer.stop();
-            onExit(1);
-            pieChartDialog = new StudyPieChart(StudyBookmarkActivity.this, wordEnd-checkCount,
-                    wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
-            pieChartDialog.show();
-        }
-        else {
-            viewPager.setCurrentItem(++currentPage, true);
-            progressBar.setProgress(currentPage + 1);
-            currentCount.setText(Integer.toString(currentPage + 1));
-        }
-    }
-
-    @Override
     protected void onExit(int factor){ }
 
     @Override

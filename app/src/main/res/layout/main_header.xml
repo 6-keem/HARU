@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/greetingtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="좋은 저녁이에요"
@@ -24,6 +25,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/timetext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="月曜日, 5月 18日, 2024年"

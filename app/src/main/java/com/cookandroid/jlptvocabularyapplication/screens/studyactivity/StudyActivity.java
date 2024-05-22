@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.CustomExitDialog;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.PieChartDialog;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.StudyPieChart;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardPagerAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.MyTextToSpeech;
@@ -35,15 +36,15 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected int checkCount = 0;
     protected TextView currentCount = null;
     protected Chronometer chronometer = null;
-    abstract protected void setCardItem();
-    abstract protected void onExit(int factor);
-
-    abstract protected void setPageScrollEvent();
     private CustomExitDialog customExitDialog;
     protected PieChartDialog pieChartDialog;
     private View.OnClickListener mConfirmListener = view -> finish();
     private View.OnClickListener mCancelListener = view -> customExitDialog.dismiss();
     protected View.OnClickListener dialogConfrimListener = view -> finish();
+
+    abstract protected void setCardItem();
+    abstract protected void onExit(int factor);
+    protected abstract String setToolbarTitle();
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -77,6 +78,30 @@ public abstract class StudyActivity extends AppCompatActivity {
         setPageScrollEvent();
     }
 
+    protected void setPageScrollEvent() {
+        for (int i = 0 ; i < arrayList.size() ; i ++){
+            CardFragment cardFragment = arrayList.get(i);
+            cardFragment.setCustomOnClickListener(view -> toNextPage());
+            cardFragment.setCustomCheckButtonOnClickListener(view -> checkCount++ );
+        }
+    }
+
+    protected void toNextPage() {
+        if(currentPage == wordEnd - 1){
+            chronometer.stop();
+            onExit(1);
+            pieChartDialog = new StudyPieChart(StudyActivity.this, wordEnd-checkCount,
+                    wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
+            pieChartDialog.show();
+        }
+        else {
+            viewPager.setCurrentItem(++currentPage, true);
+            progressBar.setProgress(currentPage + 1);
+            currentCount.setText(Integer.toString(currentPage + 1));
+        }
+    }
+
+
     private void setWidgets() {
         // TODO: 2024-05-17 DB 정보 가져와서 초기화
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -105,7 +130,6 @@ public abstract class StudyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    protected abstract String setToolbarTitle();
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -61,4 +61,8 @@ public interface WordDao {
             "WHERE level LIKE :level and bookmark = 1")
     List<Word> getBookmarkedWords(String level);
 
+    @Query("SELECT COUNT(bookmark) " +
+            "FROM word " +
+            "WHERE level LIKE :level and bookmark != 0")
+    int getBookmarkCount(int level);
 }

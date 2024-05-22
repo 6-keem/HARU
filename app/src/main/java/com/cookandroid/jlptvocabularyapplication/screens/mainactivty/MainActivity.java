@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.cookandroid.jlptvocabularyapplication.R;
@@ -25,7 +26,14 @@ import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+        setHeader();
         setViewPager();
     }
 
@@ -64,6 +73,17 @@ public class MainActivity extends AppCompatActivity {
         fragmentArrayList.get(current).onResume();
     }
 
+    private void setHeader() {
+        Calendar now = Calendar.getInstance();
+        long time = now.getTimeInMillis();
+        Date date = new Date(time);
+        int index = now.get(Calendar.DAY_OF_WEEK);
+
+        String[] weeks = {"일","월","화","수","목","금","토"};
+        TextView textView = (TextView) findViewById(R.id.timetext);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+        textView.setText(simpleDateFormat.format(date) + " " + weeks[index-1] + "요일");
+    }
     private void setToolbar(){
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.main_toolbar);
         ImageButton imageButton = (ImageButton)findViewById(R.id.dashboard_icon);
@@ -89,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
         WordDao wordDao = WordsDatabase.getInstance(getApplicationContext()).wordDao();
 
         List<UserData> userDatas = userDataDao.getAllUserData();
+        int totalCount = wordDao.getWordsCount("_", 0);
         if(userDatas.size() == 0){
-            // TODO: 2024-05-18 전체 단어 개수 넣어야함
-            userDataDao.insertUserData(new UserData(0,0, 0));
+            userDataDao.insertUserData(new UserData(0,0, totalCount));
             for(int i = 1 ; i < 6 ; i ++){
                 int total = wordDao.getWordsCount(Integer.toString(i),0);
                 int factor = (total / 8) + 1;

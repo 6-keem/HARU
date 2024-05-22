@@ -18,7 +18,7 @@ public class StudyData implements Serializable {
     public String option;
 
     @ColumnInfo(name = "date")
-    public String date;
+    public long date;
 
     // JLPT Level
     @ColumnInfo(name = "level")
@@ -42,7 +42,7 @@ public class StudyData implements Serializable {
         return option;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 

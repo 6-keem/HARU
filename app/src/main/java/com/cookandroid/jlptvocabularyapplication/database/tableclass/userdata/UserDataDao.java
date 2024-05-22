@@ -18,6 +18,10 @@ public interface UserDataDao {
     @Query("SELECT * FROM userdata")
     List<UserData> getAllUserData();
 
+    @Query("SELECT SUM(total) " +
+            "FROM userdata " +
+            "WHERE chatper = 0")
+    int getAllWordsCount();
     @Query("SELECT * FROM userdata " +
             "WHERE level LIKE :level" +
             " and chatper = :chapter")

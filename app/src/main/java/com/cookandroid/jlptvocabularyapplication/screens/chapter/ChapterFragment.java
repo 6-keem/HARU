@@ -19,6 +19,7 @@ import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
+import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.StudyBookmarkActivity;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.StudyNormalActivity;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.StudyTestActivity;
@@ -38,7 +39,6 @@ public class ChapterFragment extends Fragment {
             R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
             R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
 
-    private String[] title = {"N", "UNIT"};
     public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level) {
@@ -53,23 +53,26 @@ public class ChapterFragment extends Fragment {
         try {
             UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
             UserData data = userDataDao.getChapterData(Integer.toString(level), 0);
+            ChapterData chapterData;
             if(level == 0) {
-                chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[0]),
-                        icon[0], "JLPT ALL", "", userDataDao.getChapterData(Integer.toString(level), 0)));
+                 chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[0]),
+                        icon[0], userDataDao.getChapterData(Integer.toString(level), 0)));
                 for(int i = 5 ; i>= 1 ; i--){
-                    chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[6-i]),
-                            icon[0], "N" + i + " 북마크", "", userDataDao.getChapterData(Integer.toString(i), 0)));
+                    WordDao wordDao = WordsDatabase.getInstance(context).wordDao();
+                    int count = wordDao.getBookmarkCount(i);
+                    chapterDataArrayList.add(new BookmarkChapterData(context.getDrawable(styles[6-i]),
+                            icon[0], userDataDao.getChapterData(Integer.toString(i), 0),count));
                 }
             }
             else {
                 int total = data.chapterCount;
                 for(int i = 0; i <= total ; i ++){
                     if(i == 0) {
-                        chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
-                                icon[i], title[0] + level + " 단어 시험", "", data));
+                        chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[i]),
+                                icon[i], data));
                     } else {
-                        chapterDataArrayList.add(new ChapterData(context.getDrawable(styles[i]),
-                                icon[i], title[1] + i, "", userDataDao.getChapterData(Integer.toString(level), i)));
+                        chapterDataArrayList.add(new NormalChapterData(context.getDrawable(styles[i]),
+                                icon[i],userDataDao.getChapterData(Integer.toString(level), i)));
                     }
                 }
             }

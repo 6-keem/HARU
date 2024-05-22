@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -14,6 +15,16 @@
         android:layout_height="120dp"
         android:background="@drawable/chapter_shadow_test">
 
+        <TextView
+            android:id="@+id/ongoing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/foreground_color"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/chapter_image"
+            app:layout_constraintEnd_toEndOf="@+id/chapter_image"
+            app:layout_constraintStart_toStartOf="@+id/chapter_image" />
+
         <ImageView
             android:id="@+id/chapter_image"
             app:layout_constraintBottom_toTopOf="@id/guideline_chapter_inner_bottom"
@@ -22,7 +33,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:src="@drawable/chapter_test"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="2dp"
             android:elevation="9dp" />
 
         <TextView
@@ -40,17 +51,38 @@
 
         <ProgressBar
             android:id="@+id/chapter_progress_bar"
-            android:elevation="9dp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="250dp"
             android:layout_height="12dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="2dp"
+            android:elevation="9dp"
             android:max="150"
             android:progress="40"
             android:progressDrawable="@drawable/style_progressbar"
-            android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="@id/chapter_image"
-            app:layout_constraintLeft_toRightOf="@id/guideline_chapter_outer_right"/>
+            app:layout_constraintLeft_toRightOf="@id/guideline_chapter_outer_right" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/foreground_color_gray"
+            android:textSize="11sp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/chapter_progress_bar"
+            app:layout_constraintEnd_toStartOf="@+id/description_number" />
+
+        <TextView
+            android:id="@+id/description_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(55/55)"
+            android:textColor="@color/foreground_color_gray"
+            android:textSize="11sp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/chapter_progress_bar"
+            app:layout_constraintEnd_toEndOf="@+id/chapter_progress_bar" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_chapter_inner_right"

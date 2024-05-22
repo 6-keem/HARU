@@ -26,30 +26,6 @@ public class StudyTestActivity extends StudyActivity {
         for (Word word : words)
             arrayList.add(new TestCardFragment(word));
     }
-    @Override
-    protected void setPageScrollEvent() {
-        for (int i = 0 ; i < arrayList.size() ; i ++){
-            CardFragment cardFragment = arrayList.get(i);
-            cardFragment.setCustomOnClickListener(view -> toNextPage());
-            cardFragment.setCustomCheckButtonOnClickListener(view -> checkCount++ );
-        }
-    }
-
-    private void toNextPage() {
-        if(currentPage == wordEnd-1){
-            chronometer.stop();
-            // TODO: 2024-05-20 테스트 종료 후 결과 저장하기 위함
-            //onExit(1);
-            pieChartDialog = new TestPieChart(StudyTestActivity.this, checkCount,
-                    wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
-            pieChartDialog.show();
-        }
-        else {
-            viewPager.setCurrentItem(++currentPage, true);
-            progressBar.setProgress(currentPage+1);
-            currentCount.setText(Integer.toString(currentPage+1));
-        }
-    }
 
     @Override
     protected String setToolbarTitle() {
@@ -58,8 +34,8 @@ public class StudyTestActivity extends StudyActivity {
 
     @Override
     protected void onExit(int factor){
-        UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
-        userDataDao.updateUserDate(retryCount + factor, currentPage, Integer.toString(level), position);
+//        UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
+//        userDataDao.updateUserDate(retryCount + factor, currentPage, Integer.toString(level), position);
     }
 
     @Override

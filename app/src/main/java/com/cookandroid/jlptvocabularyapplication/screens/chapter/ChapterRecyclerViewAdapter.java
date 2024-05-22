@@ -55,14 +55,16 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
     }
 //     Image, Title, Progressbar
     public class ChapterViewHolder extends RecyclerView.ViewHolder {
-        TextView chapterTitle, description;
+        TextView chapterTitle, description, onGoing, descriptionNumber;
         ProgressBar progressBar;
         ConstraintLayout constraintLayout;
         ImageView imageView;
         public ChapterViewHolder(@NonNull View itemView) {
             super(itemView);
+            descriptionNumber = (TextView)itemView.findViewById(R.id.description_number);
+            onGoing = (TextView) itemView.findViewById(R.id.ongoing);
             chapterTitle = (TextView) itemView.findViewById(R.id.chapter_title);
-//            description = (TextView) itemView.findViewById(R.id.de)
+            description = (TextView) itemView.findViewById(R.id.description);
             constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.parent_layout);
             imageView = (ImageView) itemView.findViewById(R.id.chapter_image);
             progressBar = (ProgressBar) itemView.findViewById(R.id.chapter_progress_bar);
@@ -83,6 +85,9 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
             progressBar.setProgress(chapterData.getStudiedCount());
             constraintLayout.setBackground(chapterData.getBackground());
             imageView.setImageResource(chapterData.getImageID());
+            description.setText(chapterData.getDescription());
+            onGoing.setText(chapterData.getOnGoing());
+            descriptionNumber.setText(chapterData.getDescriptionNumber());
         }
     }
 }

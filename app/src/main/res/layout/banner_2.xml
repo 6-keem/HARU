@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dday"
+                android:id="@+id/banner_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:shadowColor="#424242"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dday">
+                app:layout_constraintTop_toBottomOf="@+id/banner_title">
 
                 <TextView
                     android:layout_width="wrap_content"
