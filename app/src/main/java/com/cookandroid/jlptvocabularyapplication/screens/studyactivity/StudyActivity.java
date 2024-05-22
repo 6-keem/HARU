@@ -144,10 +144,10 @@ public abstract class StudyActivity extends AppCompatActivity {
         else
             option = "BOOKMARK";
         long date = System.currentTimeMillis();
-        // TODO: 2024-05-22 chronometer to long으로 DB에 저장
 
         int elaspsed = (int)(SystemClock.elapsedRealtime() - chronometer.getBase());
 
+        // TODO: 2024-05-22 마지막 버튼 두 번 누르면 중복 저장 -> 버튼 이벤트 null로 설정
         StudyData studyData = new StudyData(option, elaspsed, date, level, position, checkCount, wordEnd);
         studyDataDao.insertStudyData(studyData);
         onExit(factor);

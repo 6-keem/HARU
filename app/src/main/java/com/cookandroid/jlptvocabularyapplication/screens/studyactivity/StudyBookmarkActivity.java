@@ -9,8 +9,6 @@ import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.dialog.ErrorDialog;
-import com.cookandroid.jlptvocabularyapplication.screens.dialog.StudyPieChart;
-import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.NormalCardFragment;
 
 import java.util.List;

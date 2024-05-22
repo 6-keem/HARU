@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 
 import com.cookandroid.jlptvocabularyapplication.weather.WeatherAPI;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnTokenCanceledListener;

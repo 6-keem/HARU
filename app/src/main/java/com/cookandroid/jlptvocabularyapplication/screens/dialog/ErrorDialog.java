@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.cookandroid.jlptvocabularyapplication.R;
-import com.cookandroid.jlptvocabularyapplication.databinding.DialogExitBinding;
 
 public class ErrorDialog extends Dialog {
     private Context context;

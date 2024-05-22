@@ -3,11 +3,8 @@ package com.cookandroid.jlptvocabularyapplication.screens.studyactivity;
 import android.annotation.SuppressLint;
 
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
-import com.cookandroid.jlptvocabularyapplication.screens.dialog.TestPieChart;
-import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.CardFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.TestCardFragment;
 
 import java.util.List;

@@ -5,8 +5,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
-
 import java.util.List;
 
 @Dao

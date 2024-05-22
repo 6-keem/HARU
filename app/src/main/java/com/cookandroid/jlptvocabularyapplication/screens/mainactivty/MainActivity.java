@@ -1,21 +1,18 @@
 package com.cookandroid.jlptvocabularyapplication.screens.mainactivty;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.ViewFlipper;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
@@ -26,11 +23,7 @@ import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

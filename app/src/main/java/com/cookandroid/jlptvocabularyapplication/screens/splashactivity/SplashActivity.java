@@ -10,11 +10,10 @@ import android.os.Handler;
 import androidx.core.app.ActivityCompat;
 import androidx.core.splashscreen.SplashScreen;
 
-import com.cookandroid.jlptvocabularyapplication.screens.mainactivty.MainActivity;
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.importdatabase.InsertTableHandler;
 import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;
-import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
+import com.cookandroid.jlptvocabularyapplication.screens.mainactivty.MainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 

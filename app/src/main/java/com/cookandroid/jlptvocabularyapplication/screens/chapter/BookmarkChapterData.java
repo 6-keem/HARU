@@ -2,7 +2,6 @@ package com.cookandroid.jlptvocabularyapplication.screens.chapter;
 
 import android.graphics.drawable.Drawable;
 
-import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
 
 public class BookmarkChapterData extends ChapterData{

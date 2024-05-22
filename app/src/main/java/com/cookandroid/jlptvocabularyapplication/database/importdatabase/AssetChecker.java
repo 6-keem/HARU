@@ -1,6 +1,7 @@
 package com.cookandroid.jlptvocabularyapplication.database.importdatabase;
 
 import android.content.res.AssetManager;
+
 import java.io.IOException;
 
 public class AssetChecker {
