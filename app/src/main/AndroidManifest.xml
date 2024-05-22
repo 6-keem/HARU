@@ -31,6 +31,10 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".screens.studyactivity.StudyBookmarkActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".screens.studyactivity.StudyNormalActivity"
             android:exported="false">
         </activity>

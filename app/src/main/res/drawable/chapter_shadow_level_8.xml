@@ -89,7 +89,7 @@
     <item android:top="85dp">
         <shape android:shape="rectangle" >
             <size android:height="20dp" />
-            <solid android:color="@color/unit_7_color" />
+            <solid android:color="@color/unit_8_color" />
             <corners
                 android:bottomLeftRadius="35dp"
                 android:bottomRightRadius="35dp" />

@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/study_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
@@ -45,7 +45,7 @@
             android:layout_marginBottom="5dp"
             android:src="@drawable/plant"
             app:layout_constraintBottom_toBottomOf="@id/retry_count"
-            app:layout_constraintStart_toEndOf="@id/text" />
+            app:layout_constraintStart_toEndOf="@id/study_title" />
 
         <Chronometer
             android:id="@+id/chronometer"

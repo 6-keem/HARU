@@ -67,6 +67,11 @@ public class StudyNormalActivity extends StudyActivity {
     }
 
     @Override
+    protected String setToolbarTitle() {
+        return ("N" + level + " UNIT " + position);
+    }
+
+    @Override
     protected void onExit(int factor){
         UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
         UserData userData = userDataDao.getChapterData(Integer.toString(level), position);

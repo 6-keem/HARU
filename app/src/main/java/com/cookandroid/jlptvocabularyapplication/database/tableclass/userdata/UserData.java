@@ -7,11 +7,6 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.util.Date;
 
-
-/**
- * 정보 없으면 progress 0
- *
- */
 @Entity(tableName = "userdata")
 public class UserData implements Serializable {
     // 회독 확인

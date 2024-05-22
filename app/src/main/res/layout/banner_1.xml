@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bannerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="9dp">
+
+        <TextView
+            android:id="@+id/banner_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:shadowColor="#424242"
+            android:shadowDx="-2.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="7.0"
+            android:text="JLPT"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/banner_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="4dp"
+            android:shadowColor="#424242"
+            android:shadowDx="-2.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="7.0"
+            android:text="자격증 시험"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/nanumgothic_extra_bold"
+            app:layout_constraintBottom_toBottomOf="@+id/banner_text"
+            app:layout_constraintStart_toEndOf="@+id/banner_text"/>
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#424242"
+            android:shadowDx="-2.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="7.0"
+            android:text="2024년 7월7일 일요일"
+            android:textColor="#C0FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/banner_text"
+            app:layout_constraintTop_toBottomOf="@+id/banner_text" />
+        <TextView
+            android:id="@+id/dday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="#424242"
+            android:shadowDx="-2.0"
+            android:shadowDy="4.0"
+            android:shadowRadius="7.0"
+            android:text="D-Day"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_tint"
+            app:layout_constraintBottom_toBottomOf="@id/dday"
+            app:layout_constraintEnd_toEndOf="@+id/banner_text"
+            app:layout_constraintStart_toStartOf="@+id/banner_text">
+
+            <TextView
+                android:id="@+id/link_banner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:shadowColor="#424242"
+                android:shadowDx="-2.0"
+                android:shadowDy="4.0"
+                android:shadowRadius="7.0"
+                android:text="신청하러 가기"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:textStyle="normal" />
+        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@drawable/banner"
+            android:src="@drawable/gradient_shape"/>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

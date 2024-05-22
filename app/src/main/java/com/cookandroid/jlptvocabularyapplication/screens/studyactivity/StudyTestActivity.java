@@ -52,6 +52,11 @@ public class StudyTestActivity extends StudyActivity {
     }
 
     @Override
+    protected String setToolbarTitle() {
+        return ("N" + level + " TEST");
+    }
+
+    @Override
     protected void onExit(int factor){
         UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
         userDataDao.updateUserDate(retryCount + factor, currentPage, Integer.toString(level), position);

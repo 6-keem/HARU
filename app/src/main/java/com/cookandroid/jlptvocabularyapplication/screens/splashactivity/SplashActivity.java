@@ -42,10 +42,7 @@ public class SplashActivity extends Activity {
             getPermission();
             LocationCoord.getInstance(fusedLocationProviderClient).getWeather();
             new Handler().postDelayed(()-> {
-//                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
-//                startActivity(intent);
-//                finish();
-                Intent intent = new Intent(getBaseContext(), SettingActivity.class).setAction("Splash Activity");
+                Intent intent = new Intent(getBaseContext(), MainActivity.class).setAction("Splash Activity");
                 startActivity(intent);
                 finish();
             }, 3000 - (delay/2));

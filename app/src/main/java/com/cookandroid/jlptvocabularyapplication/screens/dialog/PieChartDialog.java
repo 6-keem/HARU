@@ -66,11 +66,11 @@ public abstract class PieChartDialog extends Dialog {
     private void setPieChart(){
 
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
-        float piValue = (value * 100) / total;
+        float piValue = (float) (value * 100) / total;
         if(piValue != 0)
             pieEntries.add(new PieEntry(piValue));
         if(piValue != 100)
-            pieEntries.add(new PieEntry(100 - total));
+            pieEntries.add(new PieEntry(100 - piValue));
 
 
         ArrayList<Integer> pieColors = new ArrayList<Integer>();

@@ -56,4 +56,9 @@ public interface WordDao {
             "SET bookmark = :status " +
             "WHERE word_id = :wordID")
     void updateBookmark(long wordID, boolean status);
+
+    @Query("SELECT * FROM word " +
+            "WHERE level LIKE :level and bookmark = 1")
+    List<Word> getBookmarkedWords(String level);
+
 }

@@ -1,12 +1,20 @@
 package com.cookandroid.jlptvocabularyapplication.screens.mainactivty;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ImageButton;
+import android.widget.ViewFlipper;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
@@ -15,19 +23,24 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.Us
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
-import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.NormalCardFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
-    int current = 0;
+    private FragmentManager fragmentManager = getSupportFragmentManager();
+    private ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
+    private Handler sliderHandler = new Handler();
+    private ViewPager2 viewPager;
+    private int current = 0;
+    private boolean isAutoSlideEnabled = true;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        setToolbar();
         initializeUserData();
 
         RecyclerView recyclerView = (RecyclerView)  findViewById(R.id.level_recyclerview);
@@ -41,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragment_layout, fragmentArrayList.get(0));
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+
+        setViewPager();
     }
 
     @Override
@@ -49,7 +64,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentArrayList.get(current).onResume();
     }
 
-    ArrayList<String> setLevelItem(){
+    private void setToolbar(){
+        androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.main_toolbar);
+        ImageButton imageButton = (ImageButton)findViewById(R.id.dashboard_icon);
+        imageButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), SettingActivity.class).setAction("Dashboard");
+            startActivity(intent);
+        });
+        setSupportActionBar(toolbar);
+    }
+    private ArrayList<String> setLevelItem(){
         ArrayList<String> levelItems = new ArrayList<>();
         levelItems.add("ALL");
         levelItems.add("N5");
@@ -94,4 +118,54 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_layout, fragmentArrayList.get(level));
         fragmentTransaction.commit();
     }
+
+    private void setViewPager() {
+        viewPager = findViewById(R.id.bannerLayout);
+        int[]layouts = {R.layout.banner_1, R.layout.banner_2};
+
+        BannerPagerAdapter bannerPagerAdapter = new BannerPagerAdapter(layouts);
+        viewPager.setAdapter(bannerPagerAdapter);
+        viewPager.setCurrentItem(Integer.MAX_VALUE / 2, false);
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                if(state == ViewPager2.SCROLL_STATE_DRAGGING)
+                    stopAutoSlide();
+                else if (state == ViewPager2.SCROLL_STATE_IDLE && !isAutoSlideEnabled)
+                    startAutoSlide();
+            }
+        });
+    }
+
+    private void startAutoSlide() {
+        isAutoSlideEnabled = true;
+        sliderHandler.postDelayed(slideRunnable, 3000); // 3초마다 페이지 변경
+    }
+
+    private void stopAutoSlide() {
+        isAutoSlideEnabled = false;
+        sliderHandler.removeCallbacks(slideRunnable);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        sliderHandler.removeCallbacks(slideRunnable);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startAutoSlide();
+    }
+
+
+    private Runnable slideRunnable = new Runnable() {
+        @Override
+        public void run() {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+            sliderHandler.postDelayed(this, 5000);
+        }
+    };
 }

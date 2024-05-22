@@ -37,6 +37,7 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected Chronometer chronometer = null;
     abstract protected void setCardItem();
     abstract protected void onExit(int factor);
+
     abstract protected void setPageScrollEvent();
     private CustomExitDialog customExitDialog;
     protected PieChartDialog pieChartDialog;
@@ -96,7 +97,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         TextView toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
         ImageButton imageButton = (ImageButton) findViewById(R.id.back_arrow);
-        String title = position != 0 ? ("N" + level + " UNIT " + position) : ("N" + level + " TEST");
+        String title = setToolbarTitle();
         toolbarTitle.setText(title);
         imageButton.setOnClickListener(v -> {
             customExitDialog.show();
@@ -104,6 +105,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+    protected abstract String setToolbarTitle();
     @Override
     protected void onDestroy() {
         super.onDestroy();
