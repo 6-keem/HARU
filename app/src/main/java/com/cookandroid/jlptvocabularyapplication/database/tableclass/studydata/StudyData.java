@@ -46,6 +46,10 @@ public class StudyData implements Serializable {
     @ColumnInfo(name = "total")
     public int total;
 
+    public long getTime() {
+        return time;
+    }
+
     public int getId() {
         return id;
     }

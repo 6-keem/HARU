@@ -13,6 +13,7 @@ public interface StudyDataDao {
     public void insertStudyData(StudyData studyData);
 
     @Transaction
-    @Query("SELECT * FROM studydata")
+    @Query("SELECT * FROM studydata " +
+            "ORDER BY date desc")
     List<StudyData> getAllStudyData();
 }

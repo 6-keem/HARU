@@ -16,6 +16,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.setting);
         getSupportFragmentManager().beginTransaction().replace(R.id.analytics, new AnalyticsLineChart()).commit();
         getSupportFragmentManager().beginTransaction().replace(R.id.piechartLayout, new AnalyticsPieChart()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.streakLayout, new StreakFragment()).commit();
         setToolbar();
     }
 

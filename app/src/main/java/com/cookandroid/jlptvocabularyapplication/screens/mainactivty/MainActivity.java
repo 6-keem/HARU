@@ -74,8 +74,16 @@ public class MainActivity extends AppCompatActivity {
 
         String[] weeks = {"일","월","화","수","목","금","토"};
         TextView textView = (TextView) findViewById(R.id.timetext);
+        TextView textView1 = (TextView)findViewById(R.id.greetingtext);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         textView.setText(simpleDateFormat.format(date) + " " + weeks[index-1] + "요일");
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        if(6 <= hour && hour < 12)
+            textView1.setText("좋은 아침이에요");
+        else if(12 <= hour && hour < 18 )
+            textView1.setText("좋은 오후에요");
+        else
+            textView1.setText("좋은 저녁이에요");
     }
     private void setToolbar(){
         androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.main_toolbar);

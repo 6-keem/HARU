@@ -11,6 +11,11 @@ public class BookmarkChapterData extends ChapterData{
         super.studiedCount = bookmarkCount;
         super.title = "N" + userData.level +" 북마크";
         super.description = "N" + userData.level + " 북마크 단어 ";
-        descriptionNumber = "(" + studiedCount + "/" + total + ")";
+        if(studiedCount > total) {
+            descriptionNumber = "(" + studiedCount + "/" + studiedCount + ")";
+            total = studiedCount;
+        }
+        else
+            descriptionNumber = "(" + studiedCount + "/" + total + ")";
     }
 }
