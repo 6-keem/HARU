@@ -14,7 +14,7 @@ public class MyTextToSpeech {
                     textToSpeech.setLanguage(Locale.JAPAN);
                     textToSpeech.setSpeechRate(0.7f);
                 }
-            });
+            }, "com.google.android.tts");
         }
         return textToSpeech;
     }
