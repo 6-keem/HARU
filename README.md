@@ -11,7 +11,7 @@
     <td>DARK MODE</td>
   </tr>
   <tr>
-    <td>![라이트모드](https://github.com/6-keem/JLPT_Vocabulary_Application/assets/113224939/63a9a602-ef1c-40de-b2ac-04a1a483fb93)</td>
-    <td>![다크모드](https://github.com/6-keem/JLPT_Vocabulary_Application/assets/113224939/86c24744-3d34-4aa6-9136-512de316ce1b)</td>
+    <td><img src="https://github.com/6-keem/JLPT_Vocabulary_Application/assets/113224939/63a9a602-ef1c-40de-b2ac-04a1a483fb93"></td>
+    <td><img src="https://github.com/6-keem/JLPT_Vocabulary_Application/assets/113224939/86c24744-3d34-4aa6-9136-512de316ce1b"></td>
   </tr>
 </table>
