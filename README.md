@@ -1,8 +1,9 @@
-## 안드로이드 프로그래밍 프로젝트 - JLPT 단어장 만들기
-
+# 안드로이드 프로그래밍 프로젝트 - JLPT 단어장 만들기
+---
 ### 개발 환경 : Android Studio
 ### 개발 언어 : Java
-### 사용 외부 라이브러리 : Retrofit, Room Database, gms, MPAndroidChart ...
+### 사용한 외부 라이브러리 : Retrofit, Room Database, gms, MPAndroidChart ...
+
 
 #### 디자인 초안:
 <table>
