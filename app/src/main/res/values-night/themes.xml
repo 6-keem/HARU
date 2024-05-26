@@ -4,6 +4,7 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
 <!--        <item name="windowNoTitle">true</item>-->
+        <item name="android:windowFullscreen">true</item>
     </style>
     <style name="Theme.AndroidFinalTermProject" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
 </resources>

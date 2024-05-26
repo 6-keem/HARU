@@ -7,6 +7,8 @@ import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.StudyPieChart;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.TestPieChart;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.TestCardFragment;
 
 import java.util.List;
@@ -40,6 +42,12 @@ public class StudyTestActivity extends StudyActivity {
         if(level==0)
             return ("N1~N5 TEST");
         return ("N" + level + " TEST");
+    }
+
+    @Override
+    protected void setPieChartDialog() {
+        pieChartDialog = new TestPieChart(StudyTestActivity.this, wordEnd - checkCount,
+                wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
     }
 
     @Override

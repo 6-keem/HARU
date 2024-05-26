@@ -9,6 +9,7 @@ import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.Us
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.Word;
 import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
+import com.cookandroid.jlptvocabularyapplication.screens.dialog.StudyPieChart;
 import com.cookandroid.jlptvocabularyapplication.screens.studyactivity.carditem.NormalCardFragment;
 
 import java.util.List;
@@ -40,6 +41,12 @@ public class StudyNormalActivity extends StudyActivity {
     @Override
     protected String setToolbarTitle() {
         return ("N" + level + " UNIT " + position);
+    }
+
+    @Override
+    protected void setPieChartDialog() {
+        pieChartDialog = new StudyPieChart(StudyNormalActivity.this, wordEnd - checkCount,
+                wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
     }
 
     @Override

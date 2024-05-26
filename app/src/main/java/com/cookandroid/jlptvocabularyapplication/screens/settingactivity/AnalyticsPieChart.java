@@ -71,7 +71,7 @@ public class AnalyticsPieChart extends Fragment {
         pieChart.setEntryLabelTypeface(Typeface.create("SANS", Typeface.BOLD));
         pieChart.setEntryLabelTextSize(11f);
         pieChart.getLegend().setEnabled(false);
-        pieChart.setRotationEnabled(true);
+        pieChart.setRotationEnabled(false);
         pieChart.setHoleRadius(40f);
         pieChart.setTransparentCircleRadius(40f);
         pieChart.setHoleColor(Color.TRANSPARENT);

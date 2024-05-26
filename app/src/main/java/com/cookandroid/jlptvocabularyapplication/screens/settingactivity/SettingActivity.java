@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cookandroid.jlptvocabularyapplication.R;
 
 public class SettingActivity extends AppCompatActivity {
+    private AnalyticsPieChart pieChart = new AnalyticsPieChart();
+    private AnalyticsLineChart lineChart = new AnalyticsLineChart();
+    private StreakFragment streakFragment = new StreakFragment();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,5 +30,13 @@ public class SettingActivity extends AppCompatActivity {
         toolbarTitle.setText("Dashboard");
         imageButton.setOnClickListener(v -> finish());
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pieChart = null;
+        lineChart = null;
+        streakFragment = null;
     }
 }

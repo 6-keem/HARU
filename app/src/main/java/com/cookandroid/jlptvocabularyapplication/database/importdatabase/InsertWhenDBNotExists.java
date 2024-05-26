@@ -27,7 +27,11 @@ public class InsertWhenDBNotExists extends InsertIntoDB {
         List<Word> words = new JsonReader(context.getAssets()).getWordsList();
         WordsDatabase wordsDatabase = WordsDatabase.getInstanceWhenDBFileNotExistsInAssetFolder(context);
         WordDao wordDao = wordsDatabase.wordDao();
-        for(Word word : words)
+        int count = 0;
+        for(Word word : words) {
             wordDao.insertWord(word);
+            WordsDatabase.setWordCount(count++);
+        }
+        WordsDatabase.setStatus(true);
     }
 }

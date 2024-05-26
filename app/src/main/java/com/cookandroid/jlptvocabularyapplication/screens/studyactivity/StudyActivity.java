@@ -93,8 +93,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         if(currentPage == wordEnd - 1){
             chronometer.stop();
             saveStudyData(1);
-            pieChartDialog = new StudyPieChart(StudyActivity.this, wordEnd-checkCount,
-                    wordEnd, level, position, chronometer.getText().toString(), dialogConfrimListener);
+            setPieChartDialog();
             pieChartDialog.show();
         }
         else {
@@ -104,6 +103,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         }
     }
 
+    protected abstract void setPieChartDialog();
 
     private void setWidgets() {
         // TODO: 2024-05-17 DB 정보 가져와서 초기화

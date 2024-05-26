@@ -190,10 +190,18 @@ public class AnalyticsLineChart extends Fragment {
         lineChart.animateY(1200);
     }
     private ArrayList<ArrayList<Entry>> setCorrectAverageData(){
-        if(studyDataList == null || studyDataList.size() == 0)
-            return null;
-
         ArrayList<ArrayList<Entry>> entryArraylist = new ArrayList<>();
+        if(studyDataList == null || studyDataList.size() == 0){
+            for(int i = 0 ; i < 6 ; i ++){
+                ArrayList<Entry> arrayList = new ArrayList<>();
+                for(int j = 1 ; j <= 4 ; j ++){
+                    arrayList.add(new Entry(5-j, 0f));
+                }
+                entryArraylist.add(arrayList);
+            }
+            return entryArraylist;
+        }
+
         for(int i = 0 ; i < 6 ; i ++)
             entryArraylist.add(new ArrayList<>());
 
@@ -224,10 +232,13 @@ public class AnalyticsLineChart extends Fragment {
         return entryArraylist;
     }
     private ArrayList<Entry> setStudyTimeData(){
-        if(studyDataList == null || studyDataList.size() == 0)
-            return null;
-
         ArrayList<Entry> entryArrayList = new ArrayList<>();
+        if(studyDataList == null || studyDataList.size() == 0){
+            for(int i = 1 ; i <= 4 ; i ++)
+                entryArrayList.add(new Entry(5-i,0f));
+            return entryArrayList;
+        }
+
         long []times = {0,0,0,0};
         int []count = {0,0,0,0};
         int index = 0;

@@ -10,7 +10,7 @@ public class TestPieChart extends PieChartDialog {
 
     public TestPieChart(Context context, int value, int total, int level, int chapter, String timeStamp, View.OnClickListener mConfirmListener){
         super(context, mConfirmListener);
-        this.value = value;
+        this.value = total-value;
         this.total = total;
         this.level = level;
         this.chapter = chapter;

@@ -2,12 +2,16 @@ package com.cookandroid.jlptvocabularyapplication.screens.mainactivty;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,10 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
-import com.cookandroid.jlptvocabularyapplication.database.WordsDatabase;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserData;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.userdata.UserDataDao;
-import com.cookandroid.jlptvocabularyapplication.database.tableclass.word.WordDao;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
@@ -27,7 +27,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         setToolbar();
-        initializeUserData();
 
         RecyclerView recyclerView = (RecyclerView)  findViewById(R.id.level_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false));
@@ -59,13 +57,20 @@ public class MainActivity extends AppCompatActivity {
         setHeader();
         setViewPager();
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();
         fragmentArrayList.get(current).onResume();
     }
 
+    private void setWeatherIcon(){
+        ImageView weatherIcon = (ImageView) findViewById(R.id.weather_icon);
+        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
+            weatherIcon.setVisibility(View.INVISIBLE);
+            return;
+        }
+    }
     private void setHeader() {
         Calendar now = Calendar.getInstance();
         long time = now.getTimeInMillis();
@@ -104,28 +109,6 @@ public class MainActivity extends AppCompatActivity {
         levelItems.add("N1");
         return levelItems;
     }
-
-    private void initializeUserData(){
-        UserDataDao userDataDao = WordsDatabase.getInstance(getApplicationContext()).userDataDao();
-        WordDao wordDao = WordsDatabase.getInstance(getApplicationContext()).wordDao();
-
-        List<UserData> userDatas = userDataDao.getAllUserData();
-        int totalCount = wordDao.getWordsCount("_", 0);
-        if(userDatas.size() == 0){
-            userDataDao.insertUserData(new UserData(0,0, totalCount));
-            for(int i = 1 ; i < 6 ; i ++){
-                int total = wordDao.getWordsCount(Integer.toString(i),0);
-                int factor = (total / 8) + 1;
-                UserData userData = new UserData(i, 0, total);
-                userData.chapterCount = 8;
-                userDataDao.insertUserData(userData);
-                for(int j = 1 ; j < 8 ; j ++)
-                    userDataDao.insertUserData(new UserData(i,j,factor));
-                userDataDao.insertUserData(new UserData(i,8,total % factor));
-            }
-        }
-    }
-
 
     private void setChapterFragments(){
         fragmentArrayList.add(new ChapterFragment(getApplicationContext(),0));

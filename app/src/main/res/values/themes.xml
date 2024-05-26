@@ -3,6 +3,7 @@
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
         <item name="android:windowIsTranslucent">true</item>
         <item name="postSplashScreenTheme">@style/Theme.AndroidFinalTermProject</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
     <style name="Theme.AndroidFinalTermProject" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge" />
 </resources>
