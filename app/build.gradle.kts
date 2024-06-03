@@ -64,7 +64,7 @@ dependencies {
     //for json parsing
     implementation ("com.google.code.gson:gson:2.10.1")
 
-    //for api
+    //for api request
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.11.0")

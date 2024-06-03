@@ -15,7 +15,7 @@
             android:id="@+id/back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
+            android:background="@drawable/btn_ripple_effect"
             android:src="@drawable/arrow"
             android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

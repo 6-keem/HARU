@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
@@ -164,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         startAutoSlide();
     }
 
-
     private Runnable slideRunnable = new Runnable() {
         @Override
         public void run() {
@@ -172,4 +172,6 @@ public class MainActivity extends AppCompatActivity {
             sliderHandler.postDelayed(this, 5000);
         }
     };
+
+
 }

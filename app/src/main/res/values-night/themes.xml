@@ -6,5 +6,5 @@
 <!--        <item name="windowNoTitle">true</item>-->
         <item name="android:windowFullscreen">true</item>
     </style>
-    <style name="Theme.AndroidFinalTermProject" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />
+    <style name="Theme.AndroidFinalTermProject" parent="Base.Theme.AndroidFinalTermProject" />
 </resources>
