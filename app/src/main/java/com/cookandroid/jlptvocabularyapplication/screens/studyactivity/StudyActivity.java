@@ -145,10 +145,10 @@ public abstract class StudyActivity extends AppCompatActivity {
             option = "BOOKMARK";
         long date = System.currentTimeMillis();
 
-        int elaspsed = (int)(SystemClock.elapsedRealtime() - chronometer.getBase());
+        int elapsed = (int)(SystemClock.elapsedRealtime() - chronometer.getBase());
 
         // TODO: 2024-05-22 마지막 버튼 두 번 누르면 중복 저장 -> 버튼 이벤트 null로 설정
-        StudyData studyData = new StudyData(option, elaspsed, date, level, position, checkCount, wordEnd);
+        StudyData studyData = new StudyData(option, elapsed, date, level, position, checkCount, wordEnd);
         studyDataDao.insertStudyData(studyData);
         onExit(factor);
     }

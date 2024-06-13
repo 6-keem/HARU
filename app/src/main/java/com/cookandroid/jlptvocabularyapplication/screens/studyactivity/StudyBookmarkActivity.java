@@ -16,7 +16,6 @@ import java.util.List;
 
 @SuppressLint("SetTextI18n")
 public class StudyBookmarkActivity extends StudyActivity {
-    private int checkCount = 0;
     private View.OnClickListener mConfirmListener = v-> finish();
     private ErrorDialog errorDialog;
     @Override

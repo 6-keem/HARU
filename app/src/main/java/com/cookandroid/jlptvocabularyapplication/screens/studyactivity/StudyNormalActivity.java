@@ -16,7 +16,6 @@ import java.util.List;
 
 @SuppressLint("SetTextI18n")
 public class StudyNormalActivity extends StudyActivity {
-    private int checkCount = 0;
     @Override
     protected void setCardItem(){
         WordDao wordDao = WordsDatabase.getInstance(getApplicationContext()).wordDao();
