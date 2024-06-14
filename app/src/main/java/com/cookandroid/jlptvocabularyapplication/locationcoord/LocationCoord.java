@@ -16,7 +16,7 @@ public class LocationCoord {
     private static String iconString = null;
     private static FusedLocationProviderClient fusedLocationProviderClient = null;
     private Double lat, lon;
-    private boolean status = false;
+    private boolean status = false, weatherStatus= false;
     public static LocationCoord getInstance(FusedLocationProviderClient fusedLocationProviderClient){
         if(locationCoord == null)
             locationCoord = new LocationCoord(fusedLocationProviderClient);
@@ -40,6 +40,7 @@ public class LocationCoord {
             while (!WeatherAPI.getStatus()) ;
             iconString = WeatherAPI.getIconString();
             Log.d("USER",iconString);
+            weatherStatus = true;
         }).start();
     }
     @SuppressLint("MissingPermission")
@@ -70,5 +71,6 @@ public class LocationCoord {
         return iconString;
     }
     public boolean getStatus(){ return status; }
+    public boolean getWeatherStatus(){ return weatherStatus; }
     private void setStatus(boolean s){ status = s; }
 }

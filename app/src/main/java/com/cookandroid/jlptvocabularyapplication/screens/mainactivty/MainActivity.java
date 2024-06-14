@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
+import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;
 import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
 import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private ArrayList<ChapterFragment> fragmentArrayList = new ArrayList<>();
     private Handler sliderHandler = new Handler();
+
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private ViewPager2 viewPager;
     private int current = 0;
     private boolean isAutoSlideEnabled = true;
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
+        setWeatherIcon();
         setHeader();
         setViewPager();
     }
@@ -66,11 +72,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void setWeatherIcon(){
         ImageView weatherIcon = (ImageView) findViewById(R.id.weather_icon);
-        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
-            weatherIcon.setVisibility(View.INVISIBLE);
-            return;
-        }
+//        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
+//            weatherIcon.setVisibility(View.INVISIBLE);
+//            return;
+//        }
+        new Thread(() -> {
+            int count = 0;
+            LocationCoord locationCoord = LocationCoord.getInstance();
+            while(!locationCoord.getWeatherStatus()){
+                if(count == 60)
+                    return;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                count ++;
+            }
+            String drawableName = "_" + LocationCoord.getIconString();
+            mainHandler.post(() -> {
+                Log.d("USER","실행됐음");
+                int drawableId = getApplicationContext().getResources().getIdentifier(drawableName, "drawable", getApplicationContext().getPackageName());
+                weatherIcon.setImageResource(drawableId);
+            });
+        }).start();
     }
     private void setHeader() {
         Calendar now = Calendar.getInstance();

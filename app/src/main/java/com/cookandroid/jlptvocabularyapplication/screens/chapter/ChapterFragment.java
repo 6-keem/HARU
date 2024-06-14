@@ -35,9 +35,7 @@ public class ChapterFragment extends Fragment {
             R.drawable.chapter_shadow_level_3, R.drawable.chapter_shadow_level_4,R.drawable.chapter_shadow_level_5,
             R.drawable.chapter_shadow_level_6,R.drawable.chapter_shadow_level_7, R.drawable.chapter_shadow_level_8 };
 
-    private int[] icon = {R.drawable.chapter_test, R.drawable.chapter_1, R.drawable.chapter_2,
-            R.drawable.chapter_3,R.drawable.chapter_4,R.drawable.chapter_5,
-            R.drawable.chapter_6,R.drawable.chapter_7,R.drawable.chapter_7};
+    private int[] icon = {R.drawable.chapter_test};
 
     public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -54,29 +52,37 @@ public class ChapterFragment extends Fragment {
             UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
             UserData data = userDataDao.getChapterData(Integer.toString(level), 0);
             ChapterData chapterData;
-            if(level == 0) {
-                 chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[0]),
-                        icon[0], userDataDao.getChapterData(Integer.toString(level), 0)));
-                for(int i = 5 ; i>= 1 ; i--){
-                    WordDao wordDao = WordsDatabase.getInstance(context).wordDao();
-                    int count = wordDao.getBookmarkCount(i);
-                    chapterDataArrayList.add(new BookmarkChapterData(context.getDrawable(styles[6-i]),
-                            icon[0], userDataDao.getChapterData(Integer.toString(i), 0),count));
-                }
-            }
-            else {
-                int total = data.chapterCount;
-                for(int i = 0; i <= total ; i ++){
-                    if(i == 0) {
-                        chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[i]),
-                                icon[i], data));
-                    } else {
-                        chapterDataArrayList.add(new NormalChapterData(context.getDrawable(styles[i]),
-                                icon[i],userDataDao.getChapterData(Integer.toString(level), i)));
-                    }
-                }
-            }
+            if(level == 0)
+                setBookmarkChapterFragment(context, userDataDao);
+            else
+                setNormalChapterFragment(context, userDataDao, data);
         } catch (NullPointerException e){ }
+    }
+
+    private void setNormalChapterFragment(Context context, UserDataDao userDataDao, UserData data) {
+        int total = data.chapterCount;
+        for(int i = 0; i <= total ; i ++){
+            if(i == 0) {
+                chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[i]),
+                        icon[i], data));
+            } else {
+                String drawableName = "chapter_n" + level + "_" + i;
+                int drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
+                chapterDataArrayList.add(new NormalChapterData(context.getDrawable(styles[i]),
+                        drawableId, userDataDao.getChapterData(Integer.toString(level), i)));
+            }
+        }
+    }
+
+    private void setBookmarkChapterFragment(Context context, UserDataDao userDataDao) {
+        chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[0]),
+               icon[0], userDataDao.getChapterData(Integer.toString(level), 0)));
+        for(int i = 5 ; i>= 1 ; i--){
+            WordDao wordDao = WordsDatabase.getInstance(context).wordDao();
+            int count = wordDao.getBookmarkCount(i);
+            chapterDataArrayList.add(new BookmarkChapterData(context.getDrawable(styles[6-i]),
+                    icon[0], userDataDao.getChapterData(Integer.toString(i), 0),count));
+        }
     }
 
     private List<UserData> setWordCount(Context context){
