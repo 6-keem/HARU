@@ -33,6 +33,13 @@ public interface WordDao {
             "ORDER BY RANDOM() LIMIT :limit")
     List<Word> getWordForMeaningProblem(String kanjiToken, String furiganaToken, String furigana, int limit);
 
+    // 4개 못 받은 경우 랜덤
+    @Query("SELECT * FROM word " +
+            "WHERE furigana != :furigana " +
+            "ORDER BY RANDOM() LIMIT 1")
+    Word getWordForMeaningProblem(String furigana);
+
+
     // 부분 문자열 검색으로 중복된 것 나올 수 있음
     @Query("SELECT furigana FROM word " +
             "WHERE furigana LIKE '%' || :furiganaToken and furigana != :furigana and length(kanji) != 0 " +
@@ -42,6 +49,11 @@ public interface WordDao {
             "WHERE furigana LIKE '%' || :furiganaToken and furigana != :furigana and length(kanji) == 0 " +
             "ORDER BY RANDOM() LIMIT :limit")
     List<String> getWordsFuriganaProblemWhenFurigana(String furiganaToken, String furigana, int limit);
+
+    @Query("SELECT furigana FROM word " +
+            "WHERE furigana != :furigana " +
+            "ORDER BY RANDOM() LIMIT 1")
+    String getWordsFuriganaProblemWhenFurigana(String furigana);
 
     @Query("SELECT * FROM word WHERE level LIKE :level and word_id >= :begin and word_id < :end")
     List<Word> getWords(String level, int begin, int end);

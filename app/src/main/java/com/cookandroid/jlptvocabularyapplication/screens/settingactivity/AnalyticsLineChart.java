@@ -252,8 +252,8 @@ public class AnalyticsLineChart extends Fragment {
         }
 
         for(int i = times.length-1 ; i >= 0 ; i--) {
-            if(count[i]!=0)
-                times[i] /= count[i];
+//            if(count[i]!=0)
+//                times[i] /= count[i];
             entryArrayList.add(new Entry((float) (3 - i + 1), (float) (times[i] / (1000.0 * 60))));
         }
         return entryArrayList;
@@ -293,7 +293,7 @@ public class AnalyticsLineChart extends Fragment {
         @SuppressLint("DefaultLocale")
         @Override
         public String getFormattedValue(float value) {
-            return String.format("%.1f분",value);
+            return String.format("%.0f분",value);
         }
     }
     private class WeekFormatter extends ValueFormatter{

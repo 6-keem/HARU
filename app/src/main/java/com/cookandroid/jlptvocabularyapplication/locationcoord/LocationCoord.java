@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.cookandroid.jlptvocabularyapplication.weather.WeatherAPI;
+import com.cookandroid.jlptvocabularyapplication.weather.WeatherAPICallBack;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.CancellationToken;
@@ -35,12 +36,18 @@ public class LocationCoord {
         new Thread(() -> {
             while (!getStatus()) ;
             WeatherAPI weatherAPI = WeatherAPI.getInstance();
-            weatherAPI.requestWeatherAPI(lat, lon);
-
-            while (!WeatherAPI.getStatus()) ;
-            iconString = WeatherAPI.getIconString();
-            Log.d("USER",iconString);
-            weatherStatus = true;
+            weatherAPI.requestWeatherAPI(lat, lon, new WeatherAPICallBack() {
+                @Override
+                public void onSuccess(String iconString) {
+                    iconString = WeatherAPI.getIconString();
+                    Log.d("USER",iconString);
+                    weatherStatus = true;
+                }
+                @Override
+                public void onFailure(String message) {
+                    Log.d("USER",message);
+                }
+            });
         }).start();
     }
     @SuppressLint("MissingPermission")

@@ -13,7 +13,7 @@
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/chapter_shadow_test">
+        android:background="@drawable/test_shadow_background">
 
         <TextView
             android:id="@+id/ongoing"
@@ -21,9 +21,10 @@
             android:layout_height="wrap_content"
             android:textColor="@color/foreground_color"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/chapter_image"
-            app:layout_constraintEnd_toEndOf="@+id/chapter_image"
-            app:layout_constraintStart_toStartOf="@+id/chapter_image" />
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/description_number"
+            app:layout_constraintEnd_toEndOf="@+id/description_number"
+            app:layout_constraintStart_toStartOf="@+id/description_number" />
 
         <ImageView
             android:id="@+id/chapter_image"
@@ -89,14 +90,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="90dp" />
+            app:layout_constraintGuide_begin="94dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_chapter_outer_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="100dp" />
+            app:layout_constraintGuide_begin="94dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_chapter_inner_left"
@@ -117,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="80dp" />
+            app:layout_constraintGuide_begin="76dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_chapter_outer_Bottom"

@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.level;
+package com.cookandroid.jlptvocabularyapplication.screens.mainactivty.level;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

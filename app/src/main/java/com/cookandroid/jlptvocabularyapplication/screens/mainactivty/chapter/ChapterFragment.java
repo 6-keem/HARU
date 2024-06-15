@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.chapter;
+package com.cookandroid.jlptvocabularyapplication.screens.mainactivty.chapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,12 +30,8 @@ public class ChapterFragment extends Fragment {
     private int level;
     private ArrayList<ChapterData> chapterDataArrayList = null;
     private ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = null;
-    private int[] styles = {R.drawable.chapter_shadow_test, R.drawable.chapter_shadow_level_1, R.drawable.chapter_shadow_level_2,
-            R.drawable.chapter_shadow_level_3, R.drawable.chapter_shadow_level_4,R.drawable.chapter_shadow_level_5,
-            R.drawable.chapter_shadow_level_6,R.drawable.chapter_shadow_level_7, R.drawable.chapter_shadow_level_8 };
-
-    private int[] icon = {R.drawable.chapter_test};
-
+    private static final int testDrawable = R.drawable.test_shadow_background;
+    private static final int chapterDrawable = R.drawable.chapter_shadow_background;
     public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level) {
@@ -51,7 +46,6 @@ public class ChapterFragment extends Fragment {
         try {
             UserDataDao userDataDao = WordsDatabase.getInstance(context).userDataDao();
             UserData data = userDataDao.getChapterData(Integer.toString(level), 0);
-            ChapterData chapterData;
             if(level == 0)
                 setBookmarkChapterFragment(context, userDataDao);
             else
@@ -61,27 +55,31 @@ public class ChapterFragment extends Fragment {
 
     private void setNormalChapterFragment(Context context, UserDataDao userDataDao, UserData data) {
         int total = data.chapterCount;
-        for(int i = 0; i <= total ; i ++){
-            if(i == 0) {
-                chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[i]),
-                        icon[i], data));
-            } else {
-                String drawableName = "chapter_n" + level + "_" + i;
-                int drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
-                chapterDataArrayList.add(new NormalChapterData(context.getDrawable(styles[i]),
-                        drawableId, userDataDao.getChapterData(Integer.toString(level), i)));
-            }
+        String drawableName = "test_level_" + level;
+        int drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
+        chapterDataArrayList.add(new TestChapterData(context.getDrawable(testDrawable), drawableId, data));
+
+        for(int i = 1; i <= total ; i ++){
+            drawableName = "chapter_n" + level + "_" + i;
+            drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
+            chapterDataArrayList.add(new NormalChapterData(context.getDrawable(chapterDrawable),
+                    drawableId, userDataDao.getChapterData(Integer.toString(level), i)));
         }
     }
 
     private void setBookmarkChapterFragment(Context context, UserDataDao userDataDao) {
-        chapterDataArrayList.add(new TestChapterData(context.getDrawable(styles[0]),
-               icon[0], userDataDao.getChapterData(Integer.toString(level), 0)));
+        String drawableName = "test_level_all";
+        int drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
+        chapterDataArrayList.add(new TestChapterData(context.getDrawable(testDrawable),
+                drawableId, userDataDao.getChapterData(Integer.toString(level), 0)));
         for(int i = 5 ; i>= 1 ; i--){
+            drawableName = "bookmark_level_" + i;
+            drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
+
             WordDao wordDao = WordsDatabase.getInstance(context).wordDao();
             int count = wordDao.getBookmarkCount(i);
-            chapterDataArrayList.add(new BookmarkChapterData(context.getDrawable(styles[6-i]),
-                    icon[0], userDataDao.getChapterData(Integer.toString(i), 0),count));
+            chapterDataArrayList.add(new BookmarkChapterData(context.getDrawable(testDrawable),
+                    drawableId, userDataDao.getChapterData(Integer.toString(i), 0),count));
         }
     }
 

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="@color/ripple_background_color">
-<item>
-    <layer-list>
-    <!-- Drop Shadow Stack -->
+    <item>
+<layer-list>   <!-- Drop Shadow Stack -->
     <item>
         <shape>
             <padding
@@ -90,12 +89,12 @@
     <item android:top="85dp">
         <shape android:shape="rectangle" >
             <size android:height="20dp" />
-            <solid android:color="@color/unit_test_color" />
+            <solid android:color="@color/chapter_color" />
             <corners
                 android:bottomLeftRadius="35dp"
                 android:bottomRightRadius="35dp" />
         </shape>
     </item>
 </layer-list>
-</item>
+    </item>
 </ripple>

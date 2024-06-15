@@ -2,19 +2,15 @@ package com.cookandroid.jlptvocabularyapplication.screens.mainactivty;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,8 +19,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.cookandroid.jlptvocabularyapplication.R;
 import com.cookandroid.jlptvocabularyapplication.locationcoord.LocationCoord;
-import com.cookandroid.jlptvocabularyapplication.screens.chapter.ChapterFragment;
-import com.cookandroid.jlptvocabularyapplication.screens.level.LevelRecyclerViewAdapter;
+import com.cookandroid.jlptvocabularyapplication.screens.mainactivty.chapter.ChapterFragment;
+import com.cookandroid.jlptvocabularyapplication.screens.mainactivty.level.LevelRecyclerViewAdapter;
 import com.cookandroid.jlptvocabularyapplication.screens.settingactivity.SettingActivity;
 
 import java.text.SimpleDateFormat;
@@ -72,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setWeatherIcon(){
         ImageView weatherIcon = (ImageView) findViewById(R.id.weather_icon);
+        // TODO: 2024-06-14 권한확인 
 //        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
 //                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
 //            weatherIcon.setVisibility(View.INVISIBLE);

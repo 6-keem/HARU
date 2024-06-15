@@ -1,4 +1,4 @@
-package com.cookandroid.jlptvocabularyapplication.screens.chapter;
+package com.cookandroid.jlptvocabularyapplication.screens.mainactivty.chapter;
 
 import android.graphics.drawable.Drawable;
 

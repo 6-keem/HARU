@@ -82,6 +82,18 @@ public class TestCardFragment extends CardFragment {
                 cardData.getFurigana().substring(0,1), cardData.getFurigana(), 3);
         answer = transferMeaning(cardData.getWordMeaning());
         problemArrayList.add(answer);
+        while(problems.size() < 3){
+            Word word = wordDao.getWordForMeaningProblem(cardData.getFurigana());
+            boolean flag = true;
+            for(Word w : problems){
+                if(word.getFurigana().equals(w.getFurigana())){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                problems.add(word);
+        }
         for(Word word : problems) {
             problemArrayList.add(transferMeaning(word.getWordMeaning()));
         }
@@ -102,10 +114,19 @@ public class TestCardFragment extends CardFragment {
         List<String> problems = cardData.getKanji() == null ?
                 wordDao.getWordsFuriganaProblemWhenFurigana(furigana.substring(length-1,length), furigana, 3)
                 : wordDao.getWordsFuriganaProblem(furigana.substring(length-1,length), furigana, 3);
-        if(problems.size() < 3)
-            problemArrayList.addAll(cardData.getKanji() == null ?
-                    wordDao.getWordsFuriganaProblemWhenFurigana(furigana.substring(0,1), furigana, 3 - problems.size())
-                    : wordDao.getWordsFuriganaProblem(furigana.substring(0,1), furigana, 3 - problems.size()));
+
+        while(problems.size() < 3){
+            String string = wordDao.getWordsFuriganaProblemWhenFurigana(cardData.getFurigana());
+            boolean flag = true;
+            for(String s : problems){
+                if(s.equals(string)){
+                    flag = false;
+                    break;
+                }
+            }
+            if(flag)
+                problems.add(string);
+        }
         problemArrayList.addAll(problems);
         setProblems(view);
     }
@@ -148,12 +169,11 @@ public class TestCardFragment extends CardFragment {
         } catch (NullPointerException ignore){ }
         return flag;
     }
-
     private String transferMeaning(List<String> meanings){
         String meaning = meanings.get(0);
-        int index = meaning.indexOf("1");
+        int index = meaning.indexOf("1.");
         if(index != -1){
-            int index2 = meaning.indexOf("2");
+            int index2 = meaning.indexOf("2.");
             if(index2 != -1)
                 meaning = meaning.substring(0,index2);
             meaning = meaning.substring(index+2);

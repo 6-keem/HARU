@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/card"
-    android:background="@drawable/shadow"
-    >
+    android:background="@drawable/shadow">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

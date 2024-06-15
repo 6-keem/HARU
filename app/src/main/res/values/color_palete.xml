@@ -3,15 +3,8 @@
     <color name="card_button_color">#0C8CE9</color>
     <color name="blue_coral_background">#C7D3EB</color>
     <color name="blue_coral">#47B2FF</color>
-    <color name="unit_test_color">#233B67</color>
-    <color name="unit_1_color">#345D7D</color>
-    <color name="unit_2_color">#725B78</color>
-    <color name="unit_3_color">#C66E87</color>
-    <color name="unit_4_color">#FF7582</color>
-    <color name="unit_5_color">#FF8D8C</color>
-    <color name="unit_6_color">#F8BC9A</color>
-    <color name="unit_7_color">#F8D49A</color>
-    <color name="unit_8_color">#F5E6C9</color>
+    <color name="test_color">#FFBDBD</color>
+    <color name="chapter_color">#565A72</color>
     <color name="graph_color_coral_blue">#62B2FD</color>
 
     <color name="graph_color_level_5">#9F97F7</color>
@@ -24,4 +17,6 @@
     <color name="streak_color_2">#FFAA69</color>
     <color name="streak_color_3">#FF7C79</color>
     <color name="streak_color_4">#FF5F84</color>
+
+
 </resources>

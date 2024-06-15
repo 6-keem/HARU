@@ -6,6 +6,7 @@ import com.cookandroid.jlptvocabularyapplication.BuildConfig;
 import com.cookandroid.jlptvocabularyapplication.weather.pojo.Weather;
 import com.cookandroid.jlptvocabularyapplication.weather.pojo.WeatherRoot;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,7 +25,7 @@ public class WeatherAPI {
             weatherAPI = new WeatherAPI();
         return weatherAPI;
     }
-    public void requestWeatherAPI(Double lat, Double lon){
+    public void requestWeatherAPI(Double lat, Double lon, WeatherAPICallBack weatherAPICallBack) {
         this.lat = lat;
         this.lon = lon;
 
@@ -33,26 +34,22 @@ public class WeatherAPI {
 
         Retrofit retrofit = RetrofitManager.getInstance(baseURL);
         WeatherService service = retrofit.create(WeatherService.class);
-        service.getData(lat, lon, BuildConfig.weather_api_key).enqueue(new Callback<WeatherRoot>() {
-            @Override
-            public void onResponse(Call<WeatherRoot> call, Response<WeatherRoot> response) {
-                try {
-                    if(response.isSuccessful()){
-                        WeatherRoot weatherRoot = response.body();
-                        assert weatherRoot != null;
-                        List<Weather> weathers = weatherRoot.getWeather();
-                        setIconString(weathers.get(0).getIcon());
-                        setStatus(true);
-                    }
-                } catch (Exception e){
-                    Log.d("Exception", "WeatherAPI Failed");
-                }
+        try {
+            Response<WeatherRoot> response = service.getData(lat, lon, BuildConfig.weather_api_key).execute();
+            if(response.isSuccessful()){
+                WeatherRoot weatherRoot = response.body();
+                assert weatherRoot != null;
+                List<Weather> weathers = weatherRoot.getWeather();
+                setIconString(weathers.get(0).getIcon());
+                setStatus(true);
+                weatherAPICallBack.onSuccess(weathers.get(0).getIcon());
+            } else {
+                weatherAPICallBack.onFailure("Weather API FAILED");
             }
-            @Override
-            public void onFailure(Call<WeatherRoot> call, Throwable t) {
-                Log.d("Exception", "WeatherAPI Failed");
-            }
-        });
+        } catch (IOException exception){
+            weatherAPICallBack.onFailure("Weather API I/O EXCEPTION");
+        }
+
     }
     public static boolean getStatus(){ return status; }
     private static void setStatus(boolean s){ status = s; }
