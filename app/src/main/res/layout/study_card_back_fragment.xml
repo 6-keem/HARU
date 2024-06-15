@@ -96,7 +96,7 @@
                 android:layout_marginBottom="2dp"
                 android:autoSizeTextType="uniform"
                 android:text="meaning"
-                android:textColor="@color/card_lightgray"
+                android:textColor="@color/word_meaning_color"
                 android:textSize="13sp"
                 android:textStyle="normal" />
 

@@ -38,9 +38,8 @@ public class LocationCoord {
             WeatherAPI weatherAPI = WeatherAPI.getInstance();
             weatherAPI.requestWeatherAPI(lat, lon, new WeatherAPICallBack() {
                 @Override
-                public void onSuccess(String iconString) {
-                    iconString = WeatherAPI.getIconString();
-                    Log.d("USER",iconString);
+                public void onSuccess(String weatherIcon) {
+                    iconString = weatherIcon;
                     weatherStatus = true;
                 }
                 @Override

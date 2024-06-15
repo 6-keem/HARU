@@ -11,6 +11,7 @@
     <color name="card_color">#282A36</color>
     <color name="graph_outter_circle_color">#FFFFFF</color>
     <color name="ripple_background_color">#1B1B23</color>
+    <color name="word_meaning_color">#ECECEC</color>
 
     <color name="shadow_1">#202029</color>
     <color name="shadow_2">#1D1D25</color>

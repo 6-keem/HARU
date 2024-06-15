@@ -12,6 +12,7 @@
     <color name="card_color">#FFFFFFFF</color>
     <color name="graph_outter_circle_color">#FFFFFF</color>
     <color name="ripple_background_color">#E6E6E6</color>
+    <color name="word_meaning_color">#222222</color>
 
     <color name="shadow_1">#F1F1F1</color>
     <color name="shadow_2">#EAEAEA</color>

@@ -2,15 +2,18 @@ package com.cookandroid.jlptvocabularyapplication.screens.mainactivty;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -89,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
             }
             String drawableName = "_" + LocationCoord.getIconString();
             mainHandler.post(() -> {
-                Log.d("USER","실행됐음");
                 int drawableId = getApplicationContext().getResources().getIdentifier(drawableName, "drawable", getApplicationContext().getPackageName());
+                Log.d("USER",drawableName + drawableId + "실행됐음");
                 weatherIcon.setImageResource(drawableId);
             });
         }).start();
