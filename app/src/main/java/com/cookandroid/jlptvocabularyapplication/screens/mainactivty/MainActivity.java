@@ -71,12 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setWeatherIcon(){
         ImageView weatherIcon = (ImageView) findViewById(R.id.weather_icon);
-        // TODO: 2024-06-14 권한확인 
-//        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-//                && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
-//            weatherIcon.setVisibility(View.INVISIBLE);
-//            return;
-//        }
+        if (!(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)){
+            weatherIcon.setVisibility(View.INVISIBLE);
+            return;
+        }
         new Thread(() -> {
             int count = 0;
             LocationCoord locationCoord = LocationCoord.getInstance();
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             String drawableName = "_" + LocationCoord.getIconString();
             mainHandler.post(() -> {
                 int drawableId = getApplicationContext().getResources().getIdentifier(drawableName, "drawable", getApplicationContext().getPackageName());
-                Log.d("USER",drawableName + drawableId + "실행됐음");
                 weatherIcon.setImageResource(drawableId);
             });
         }).start();
