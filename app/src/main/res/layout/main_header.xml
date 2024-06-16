@@ -24,6 +24,7 @@
             android:textColor="@color/foreground_color"
             android:fontFamily="@font/nanumgothic_extra_bold"
             android:textSize="28sp"
+            android:layout_marginBottom="2dp"
             android:textStyle="bold" />
 
         <TextView
