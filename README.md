@@ -1,18 +1,42 @@
-# 안드로이드 프로그래밍 프로젝트 - JLPT 단어장 만들기
+# 🌸 JLPT 단어 공부앱
 ---
-### 개발 환경 : Android Studio
-### 개발 언어 : Java
-### 사용한 외부 라이브러리 : Retrofit, Room Database, gms, MPAndroidChart ...
+
+## 📼 시연 영상
+
+## 📌 프로젝트 소개
+
+### 개발 목적
+
+### 앱 소개
+* (앱 이름)은 언어 공부에 가장 중요한, **단어 암기**에 중점을 둔 앱입니다.
+* 단어는 자격증 시험 레벨(N1~N5)별로 나누어져 있어 쉬운 단어부터 어려운 단어까지 **점진적으로 공부**할 수 있습니다.
+* 학습 카드에는 한자 단어만 표시되며, 이미 암기한 경우 다음 카드로 넘어갈 수 있습니다.
+* 기억이 나지 않는 경우, 확인하기 버튼을 누르면 카드가 뒤집히며 품사, 뜻, 예문 등이 표시 됩니다.
+* 뒤집힌 카드에서는 원어민 발음을 들을 수 있고, 단어의 상세 정보 검색, 북마크가 가능합니다.
+* 원하는 레벨(N1~N5)에 대해 시험을 볼 수 있습니다. 4지선다 문제로 각 문제의 유형은 랜덤입니다.
+* 학습이 완료되면 해당 학습에 대한 결과가 표시됩니다.
+* 대시보드 화면에서는 다양한 그래프를 통해 학습 현황(진도, 정답률)을 알 수 있습니다.
 
 
-#### 디자인 초안:
-<table>
-  <tr>
-    <td>LIGHT MODE</td>
-    <td>DARK MODE</td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/6-keem/JLPT_Vocabulary_Application/assets/113224939/63a9a602-ef1c-40de-b2ac-04a1a483fb93"></td>
-    <td><img src="https://github.com/6-keem/JLPT_Vocabulary_Application/assets/113224939/86c24744-3d34-4aa6-9136-512de316ce1b"></td>
-  </tr>
-</table>
+## ⚙ 프로젝트 구조
+
+
+## 🔧 적용 기술
+
+### 개발 환경
+* window
+
+### 개발 도구
+* android studio
+
+### 개발 언어 
+* JAVA
+
+### 활용 라이브러리
+* Retrofit, Room Database, gms, MPAndroidChart ...
+
+
+## 프로젝트 결과
+
+
+
