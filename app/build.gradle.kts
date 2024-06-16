@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.cookandroid.jlptvocabularyapplication"
+    namespace = "com.cookandroid.haru"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.cookandroid.jlptvocabularyapplication"
+        applicationId = "com.cookandroid.haru"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

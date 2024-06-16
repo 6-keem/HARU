@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:text="좋은 저녁이에요"
             android:textColor="@color/foreground_color"
-            android:textSize="25sp"
+            android:fontFamily="@font/nanumgothic_extra_bold"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView

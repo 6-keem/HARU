@@ -2,14 +2,14 @@
     <!-- Base application theme. -->
     <style name="Theme.App.Splash" parent="Theme.SplashScreen">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="postSplashScreenTheme">@style/Theme.AndroidFinalTermProject</item>
+        <item name="postSplashScreenTheme">@style/HARU</item>
         <item name="android:windowFullscreen">true</item>
     </style>
-    <style name="Base.Theme.AndroidFinalTermProject" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="Base.Theme.HARU" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <!--        <item name="windowNoTitle">true</item>-->
         <item name="android:windowFullscreen">true</item>
     </style>
-    <style name="Theme.AndroidFinalTermProject" parent="Base.Theme.AndroidFinalTermProject" />
+    <style name="HARU" parent="Base.Theme.HARU" />
 </resources>

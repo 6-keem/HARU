@@ -6,5 +6,5 @@
 <!--        <item name="windowNoTitle">true</item>-->
         <item name="android:windowFullscreen">true</item>
     </style>
-    <style name="Theme.AndroidFinalTermProject" parent="Base.Theme.AndroidFinalTermProject" />
+    <style name="HARU" parent="Base.Theme.AndroidFinalTermProject" />
 </resources>

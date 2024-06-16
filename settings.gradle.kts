@@ -14,6 +14,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "JLPT_Vocabulary_Application"
+rootProject.name = "haru"
 include(":app")
  

@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidFinalTermProject"
+        android:theme="@style/HARU"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
