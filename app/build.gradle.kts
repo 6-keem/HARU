@@ -13,11 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.cookandroid.jlptvocabularyapplication"
         minSdk = 21
-
-
-        // TODO: 마지막에 34로 업그레이드
-
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
