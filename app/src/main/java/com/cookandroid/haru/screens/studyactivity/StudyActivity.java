@@ -19,7 +19,7 @@ import com.cookandroid.haru.R;
 import com.cookandroid.haru.database.WordsDatabase;
 import com.cookandroid.haru.database.tableclass.studydata.StudyData;
 import com.cookandroid.haru.database.tableclass.studydata.StudyDataDao;
-import com.cookandroid.haru.screens.dialog.CustomExitDialog;
+import com.cookandroid.haru.screens.dialog.StudyExitDialog;
 import com.cookandroid.haru.screens.dialog.PieChartDialog;
 import com.cookandroid.haru.screens.studyactivity.carditem.CardFragment;
 import com.cookandroid.haru.screens.studyactivity.carditem.CardPagerAdapter;
@@ -38,10 +38,10 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected int checkCount = 0;
     protected TextView currentCount = null;
     protected Chronometer chronometer = null;
-    private CustomExitDialog customExitDialog;
+    private StudyExitDialog studyExitDialog;
     protected PieChartDialog pieChartDialog;
     private View.OnClickListener mConfirmListener = view -> finish();
-    private View.OnClickListener mCancelListener = view -> customExitDialog.dismiss();
+    private View.OnClickListener mCancelListener = view -> studyExitDialog.dismiss();
     protected View.OnClickListener dialogConfrimListener = view -> finish();
 
     abstract protected void setCardItem();
@@ -53,7 +53,7 @@ public abstract class StudyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.study);
-        customExitDialog = new CustomExitDialog(StudyActivity.this, mCancelListener, mConfirmListener);
+        studyExitDialog = new StudyExitDialog(StudyActivity.this, mCancelListener, mConfirmListener);
 
         MyTextToSpeech.getInstance(getApplicationContext());
         Intent intent = getIntent();
@@ -127,7 +127,7 @@ public abstract class StudyActivity extends AppCompatActivity {
         String title = setToolbarTitle();
         toolbarTitle.setText(title);
         imageButton.setOnClickListener(v -> {
-            customExitDialog.show();
+            studyExitDialog.show();
         });
         setSupportActionBar(toolbar);
     }
@@ -157,8 +157,8 @@ public abstract class StudyActivity extends AppCompatActivity {
         viewPager.setAdapter(null);
         arrayList = null;
         cardPagerAdapter = null;
-        if(customExitDialog != null && customExitDialog.isShowing())
-            customExitDialog.dismiss();
+        if(studyExitDialog != null && studyExitDialog.isShowing())
+            studyExitDialog.dismiss();
         if(pieChartDialog != null && pieChartDialog.isShowing())
             pieChartDialog.dismiss();
         dialogConfrimListener = mCancelListener = mConfirmListener = null;

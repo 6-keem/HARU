@@ -12,15 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.cookandroid.haru.R;
-import com.cookandroid.haru.databinding.DialogExitBinding;
 
-public class CustomExitDialog extends Dialog {
+public abstract class ExitDialog extends Dialog {
     private Context context;
-    private DialogExitBinding dialogExitBinding;
     private View.OnClickListener mConfirmListener;
-
     private View.OnClickListener mCancelListener;
-    public CustomExitDialog(@NonNull Context context, View.OnClickListener cancelListener, View.OnClickListener confirmListener ) {
+    public ExitDialog(@NonNull Context context, View.OnClickListener cancelListener, View.OnClickListener confirmListener ) {
         super(context);
         this.context = context;
         this.mCancelListener = cancelListener;
@@ -41,7 +38,7 @@ public class CustomExitDialog extends Dialog {
         setCanceledOnTouchOutside(true);
         setCancelable(true);
 
-        setContentView(R.layout.dialog_exit);
+        setDialogContentView();
 
         TextView cancel = (TextView) findViewById(R.id.cancel);
         TextView confirm = (TextView) findViewById(R.id.confirm);
@@ -50,5 +47,5 @@ public class CustomExitDialog extends Dialog {
         confirm.setOnClickListener(mConfirmListener);
     }
 
-
+    abstract protected void setDialogContentView();
 }

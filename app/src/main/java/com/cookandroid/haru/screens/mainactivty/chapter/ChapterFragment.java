@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,7 @@ import com.cookandroid.haru.database.WordsDatabase;
 import com.cookandroid.haru.database.tableclass.userdata.UserData;
 import com.cookandroid.haru.database.tableclass.userdata.UserDataDao;
 import com.cookandroid.haru.database.tableclass.word.WordDao;
+import com.cookandroid.haru.screens.dialog.ApplicationExitDialog;
 import com.cookandroid.haru.screens.studyactivity.StudyBookmarkActivity;
 import com.cookandroid.haru.screens.studyactivity.StudyNormalActivity;
 import com.cookandroid.haru.screens.studyactivity.StudyTestActivity;
@@ -32,6 +35,9 @@ public class ChapterFragment extends Fragment {
     private ChapterRecyclerViewAdapter chapterRecyclerViewAdapter = null;
     private static final int testDrawable = R.drawable.test_shadow_background;
     private static final int chapterDrawable = R.drawable.chapter_shadow_background;
+    private ApplicationExitDialog appliceationExitDialog = null;
+    private View.OnClickListener confirmButtonListener = null;
+    private View.OnClickListener cancelButtonListener = null;
     public ChapterFragment(){ }
     @SuppressLint("UseCompatLoadingForDrawables")
     public ChapterFragment(Context context, int level) {
@@ -68,7 +74,7 @@ public class ChapterFragment extends Fragment {
     }
 
     private void setBookmarkChapterFragment(Context context, UserDataDao userDataDao) {
-        String drawableName = "test_level_all";
+        String drawableName = "test_all";
         int drawableId = context.getResources().getIdentifier(drawableName, "drawable", context.getPackageName());
         chapterDataArrayList.add(new TestChapterData(context.getDrawable(testDrawable),
                 drawableId, userDataDao.getChapterData(Integer.toString(level), 0)));
@@ -98,11 +104,29 @@ public class ChapterFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        confirmButtonListener = confrimView -> {
+            ActivityCompat.finishAffinity(requireActivity());
+            System.exit(0);
+        };
+        cancelButtonListener = cancelView -> {
+            if(appliceationExitDialog != null)
+                appliceationExitDialog.dismiss();
+        };
+        appliceationExitDialog = new ApplicationExitDialog(requireContext(),
+                cancelButtonListener, confirmButtonListener);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (appliceationExitDialog != null)
+                    appliceationExitDialog.show();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
     }
 
     @Override
@@ -128,5 +152,13 @@ public class ChapterFragment extends Fragment {
             startActivity(intent);
         });
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(appliceationExitDialog.isShowing())
+            appliceationExitDialog.dismiss();
+        appliceationExitDialog = null;
     }
 }
