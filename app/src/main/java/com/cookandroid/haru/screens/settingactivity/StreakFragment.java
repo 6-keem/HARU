@@ -45,19 +45,17 @@ public class StreakFragment extends Fragment {
         StudyDataDao dataDao = WordsDatabase.getInstance(requireContext()).studyDataDao();
         List<StudyData> studyDataList = dataDao.getAllStudyData();
         Calendar calendar = Calendar.getInstance();
+        long mills = calendar.getTimeInMillis();
         int nowYear = calendar.get(Calendar.YEAR);
         int nowDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-        if(studyDataList.size() > 0){
-            StudyData lastDate = studyDataList.get(0);
-            for(int i = 0 ; i < 20 ; i ++){
-                calendar.setTimeInMillis(lastDate.getDate() - i * (24 * 60 * 60 * 1000));
-                int savedYear = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int days = calendar.get(Calendar.DAY_OF_MONTH);
-                int savedDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
-                msg[nowYear-savedYear][nowDayOfYear-savedDayOfYear] = savedYear + "-" +
-                        month + "-" + days + " : ";
-            }
+        for(int i = 0 ; i < 20 ; i ++){
+            calendar.setTimeInMillis(mills - i * (24 * 60 * 60 * 1000));
+            int savedYear = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int days = calendar.get(Calendar.DAY_OF_MONTH);
+            int savedDayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
+            msg[nowYear-savedYear][nowDayOfYear-savedDayOfYear] = savedYear + "-" +
+                    String.format("%02d", month) + "-" + String.format("%02d",days) + " : ";
         }
 
         for(StudyData studyData : studyDataList){
@@ -69,13 +67,11 @@ public class StreakFragment extends Fragment {
             if(nowYear - savedYear > 4)
                 break;
             year[nowYear-savedYear][nowDayOfYear-savedDayOfYear]++;
-            msg[nowYear-savedYear][nowDayOfYear-savedDayOfYear] = savedYear + "-" +
-                    month + "-" + days + " : ";
         }
 
         boolean flag = true;
         int count = 0;
-            for(int i = 0 ; i < year.length ; i++){
+        for(int i = 0 ; i < year.length ; i++){
             for(int j = 0 ; j < year[i].length ; j ++){
                 if(year[i][j] != 0){
                     if (flag)
