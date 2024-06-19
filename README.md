@@ -1,17 +1,12 @@
 # <center>🌸 하루(春) - JLPT 단어 학습</center>
 
----
 
 ## <center>📚 목차</center>
 
-<center>1. <a href = "#introduce">📌 프로젝트 소개</a></center>
-<center>2. <a href = "#structure">⚙ 프로젝트 구조</a>&nbsp</center>
-<center>3. <a href = "#video">📼시연 영상</center>
-<center>3. <a href = "#skills">🔧 적용 기술</a></center>
-
-
----
-
+<center>1. <a href = "#introduce">📌 프로젝트 소개</a></center><br>
+<center>2. <a href = "#structure">⚙ 프로젝트 구조</a>&nbsp</center><br>
+<center>3. <a href = "#video">📼시연 영상</center><br>
+<center>3. <a href = "#skills">🔧 적용 기술</a></center><br>
 
 
 <img width="2400" alt="README_IMAGE" src="https://github.com/6-keem/HARU/assets/113224939/32db8db9-d7e7-40cd-9875-7bc0fab8625f">
