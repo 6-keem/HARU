@@ -6,7 +6,7 @@
 <center>1. <a href = "#introduce">📌 프로젝트 소개</a></center><br>
 <center>2. <a href = "#structure">⚙ 프로젝트 구조</a>&nbsp</center><br>
 <center>3. <a href = "#video">📼시연 영상</center><br>
-<center>3. <a href = "#skills">🔧 적용 기술</a></center>
+<center>4. <a href = "#skills">🔧 적용 기술</a></center>
 
 ---
 
