@@ -54,11 +54,6 @@
 
 ![Architecture Diagram](https://github.com/6-keem/HARU/assets/113224939/34f522d6-2c59-4762-8d94-36482962f68b)
 
-<h2 id = "summery">📑 프로젝트 결과</h2>
-
-
-
-
 <h2 id = "skills">🔧 적용 기술</h2>
 
 ### 개발 환경
